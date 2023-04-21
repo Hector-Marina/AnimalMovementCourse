@@ -71,4 +71,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[SLU]([(https://www.slu.se/])
+[SLU](https://www.slu.se/)
