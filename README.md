@@ -1,7 +1,10 @@
 # AnimalMovementCourse
 Animal movements - from free ranging to restricted indoor environments.
 
-The code focuses on the analysis of animal movement data in natural, semi-natural or indoor environments.
+The aim of this course is to learn method approaches to analyse movement data on animals
+in natural, semi-natural or indoor environments. The focus will be on using existing R
+packages for movement analysis evaluating, how animals are affected by their environments
+and what drives their behavioural decisions
 
 Course date: 4-8 September 2023.
 
