@@ -1,8 +1,10 @@
 # AnimalMovementCourse
 Animal movements - from free ranging to restricted indoor environments.
+
 The code focuses on the analysis of animal movement data in natural, semi-natural or indoor environments.
 
 Course date: 4-8 September 2023.
+
 Place: Ekenäs herrgård in Sörmland, Sweden.
 
 #### Course leaders:
