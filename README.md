@@ -5,10 +5,11 @@ The code focuses on the analysis of animal movement data in natural, semi-natura
 Course date: 4-8 September 2023.
 Place: Ekenäs herrgård in Sörmland, Sweden.
 
-Course leaders:
+#### Course leaders:
 - Anna Skarin, SLU (A)
 - Lars Rönnegård, SLU (L)
-Teachers in the course:
+
+#### Teachers in the course:
 - Johannes Signer, Univ of Goettingen (J)
 - Bernardo Brandão Niebuhr, NINA (B)
 - Hector Marina, SLU (H)
