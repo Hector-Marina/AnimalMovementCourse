@@ -27,7 +27,22 @@ Read cow information
 ```{r}
 
 CPheno <- read.table("data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
+
+```
+
+Total number of individuals/lines in the phenotype information:
+```{r}
+
 nrow(CPheno)
+
+```
+
+
+Plotting the distribution of the data:
+```{r}
+
+hist(as.factor(CPheno$Parity))
+hist(CPheno$Claw_health)
 
 ```
 

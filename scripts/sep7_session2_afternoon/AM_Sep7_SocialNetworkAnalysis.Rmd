@@ -11,11 +11,11 @@ output: html_document
 
 Introduction about the script. Different parts: with a short description and links intra-document.
 
-1.  [Read farm information](#RFI)
-2.  [Plot adjacency matrices](#PAM)
-3.  [Read FA interpolated data](#RPAI)
-4.  [Build the network](#BTN)
-5.  [Plot the network](#PTN)
+1.  [Farm information](#RFI)
+2.  [FA interpolated data](#RPAI)
+3.  [Social contact information](#PAM)
+4.  [Build the networks](#BTN)
+5.  [Plot the networks](#PTN)
 6.  [Estimate the topological parameters](#ETP)
 7.  [Plot topological parameters](#PTP)
 8.  [Filtering networks](#FNS)
@@ -24,69 +24,41 @@ Introduction about the script. Different parts: with a short description and lin
 ### Required packages and functions
 
 ```{r pressure, echo=FALSE}
+library(network) #version="1.17.2"
+#library(statnet)
 #library(plyr);library(dplyr)
-library(statnet)
 #library(coda)
 #library(tergm)
 #library(tsna)
 #library(ndtv)
-library(htmlwidgets)
+#library(htmlwidgets)
 #library(texreg)
 #library(latticeExtra)
 
-source("scripts/Sep.../.SocialNetworkAnalysis_functions.R")
+#source(".SocialNetworkAnalysis_functions.R")
 ```
 
-## Read farm information {#RFI}
+## Farm information {#RFI}
 
-Read cow information
+Read cow information: cow information contains: ID tag matID Parity Lactation_stage Pregnancy_status Breed Claw_health Time_in_area
 
 ```{r}
 
-CPheno <- read.table("data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
-
+CPheno <- read.table("../../data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
+nrow(CPheno)
 
 ```
 
-Reading Age cntemporary matrix
+Reading Age contemporary matrix:
 
 ```{r}
-
-AGEcont<-list()
-AGEcont[[1]]<-read.table("data/raw/indoor/AGEcontemporary_EarlyLactationGroup.csv", header = FALSE, sep = ",")
-AGEcont[[2]]<-read.table("data/raw/indoor/AGEcontemporary_LateLactationGroup.csv" , header = FALSE, sep = ",")
-
-```
-
-
-Read Adjacency matrix + Filtering considering animals (or do it in advance?)
-
-```{r pressure, echo=FALSE}
-
-ADJmat_ELG<-list()
-ADJmat_ELG[[1]]<-read.table("data/raw/indoor/Adjacencymatrix_FeedingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ",")
-ADJmat_ELG[[2]]<-read.table("data/raw/indoor/Adjacencymatrix_RestingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ",")
-names(ADJmat_ELG)<-c("FeedingArea","RestingArea")
-
-ADJmat_LLG<-list()
-ADJmat_LLG[[1]]<-read.table("data/raw/indoor/Adjacencymatrix_FeedingArea_LateLactationGroup_20201017.csv",  header = FALSE, sep = ",")
-ADJmat_LLG[[2]]<-read.table("data/raw/indoor/Adjacencymatrix_RestingArea_LateLactationGroup_20201017.csv",  header = FALSE, sep = ",")
-names(ADJmat_LLG)<-c("FeedingArea","RestingArea")
-
+AGEcont<-as.matrix(read.table("../../data/raw/indoor/AGEcontemporary_EarlyLactationGroup.csv", header = FALSE, sep = ","))
+dim(AGEcont)
 ```
 
 
 
-## Plot adjacency matrices {#PAM}
-
-```{r pressure, echo=FALSE}
-
-
-heatmap()
-
-```
-
-## Read FA interpolated data {#RPAI}
+## FA interpolated data {#RPAI}
 
 -   select two animals and plot contacts graphs?
 
@@ -96,20 +68,97 @@ ggplottt
 
 ```
 
-## Build the network {#BTN}
+
+
+## Social contact information {#PAM}
+
+Read Adjacency contact matrices
 
 ```{r pressure, echo=FALSE}
 
-Cedges <- network(mat,directed=FALSE)
+ADJmat<-list()
+ADJmat[["FeedingArea"]]<-as.matrix(read.table("../../data/raw/indoor/Adjacencymatrix_FeedingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ","))
+ADJmat[["RestingArea"]]<-as.matrix(read.table("../../data/raw/indoor/Adjacencymatrix_RestingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ","))
+
 
 ```
 
-## Plot the network {#PTN}
+Plot the adjacency matrices using a heatmap
+
+::: columns
+::: column
+Feeding area
 
 ```{r pressure, echo=FALSE}
+heatmap(ADJmat[["FeedingArea"]],Colv = NA,Rowv = NA, symm = TRUE, revC = TRUE)
+```
+:::
+
+::: column
+Resting area
+
+```{r pressure, echo=FALSE}
+heatmap(ADJmat[["RestingArea"]],Colv = NA,Rowv = NA, symm = TRUE, revC = TRUE)
+```
+:::
+
+
+Check the number of social contacts detected in both functional areas:
+::: columns
+::: column
+Feeding area
+
+```{r pressure, echo=FALSE}
+sum(ADJmat[["FeedingArea"]])
+
+```
+:::
+::: column
+Resting area
+
+```{r pressure, echo=FALSE}
+sum(ADJmat[["RestingArea"]])
+```
+:::
+
+
+Percentage of contacts per functional area out of possible total social contacts detected:
+::: columns
+::: column
+Feeding area
+
+```{r pressure, echo=FALSE}
+sum(ADJmat[["FeedingArea"]])/((nrow(ADJmat[["FeedingArea"]])^2)-nrow(ADJmat[["FeedingArea"]]))*100
+```
+:::
+::: column
+Resting area
+
+```{r pressure, echo=FALSE}
+sum(ADJmat[["RestingArea"]])/((nrow(ADJmat[["RestingArea"]])^2)-nrow(ADJmat[["RestingArea"]]))*100
+```
+:::
 
 
 
+## Build the networks {#BTN}
+
+Contact networks
+```{r pressure, echo=FALSE}
+FA_net <- network::network(ADJmat[["FeedingArea"]],directed=FALSE)
+RA_net <- network::network(ADJmat[["RestingArea"]],directed=FALSE)
+```
+
+Age contemporary network
+```{r pressure, echo=FALSE}
+AGEnet <- network::network(AGEcont,directed=FALSE)
+```
+
+
+## Plot the networks {#PTN}
+
+```{r pressure, echo=FALSE}
+plot(AGEnet)
 ```
 
 ## Estimate the topological parameters {#ETP}
