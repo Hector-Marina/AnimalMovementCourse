@@ -5,23 +5,135 @@ date: "2023-09-04"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+##C:\Users\user\Documents\\2 - Uppsala\\02-Analyses\\04-MayasManuscript\\08-script_areacovered_propensityscore2.R ##C:\Users\hrna0001\\Documents\\2 - Uppsala\\02-Analyses\\04-MayasManuscript\\00-functions\functions\_PA.R \<- This should work as is the last used.
+
+# Home range methods on indoor data
+
+Introduction about the script. Different parts:
+
+### Required packages and functions
+
+```{r pressure, echo=FALSE}
+library()
+source("scripts/Sep.../.HomeRange_functions.R")
 ```
 
-## R Markdown
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Reading farm information
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Read cow information
 
-```{r cars}
-summary(cars)
+```{r}
+
+CPheno <- read.table("data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
+nrow(CPheno)
+
 ```
+
+Plot information and stats.
+
+```{r pressure, echo=FALSE}
+
+plot(pressure)
+
+```
+
+Read map of the farm and plot the different areas.
+
+```{r pressure, echo=FALSE}
+
+  Dutch_Areas   <- read.csv("data/raw/areas_dutch.csv", header=FALSE)
+  colnames(Dutch_Areas)<- c("X1","X2","Y1","Y2","Area")
+  X_png<-max(Dutch_Areas$X2)
+  Y_png<-max(Dutch_Areas$Y2)
+  
+  # Loading blue prints
+  Dutch_r <- png::readPNG('data/processed/DutchBarnMap_blueprint_Areas2.png')
+  Dutch_rg <- grid::rasterGrob(Dutch_r, width=unit(1,"npc"), height=unit(1,"npc"))
+  
+  Following: SocialNetworkAnalyses_Dutch/scripts/00-tests/00-Plotting_RTLScontacts.R
+
+```
+
+## Reading FA interpolated data
+
+Read FA data + Explanation different interpolation methods
+
+```{r pressure, echo=FALSE}
+
+read data()
+EarlyLactationGroup_idList.txt
+FA_EarlyLactationGroup_20201017.zip
+FA_EarlyLactationGroup_20201017_interpolated.zip
+colnames(FAdataFile)<- c("FILE","id","tag","t1","x","y","z")
+
+
+```
+
+filter the animals that have information
+
+```{r pressure, echo=FALSE}
+
+
+Filtering data()
+
+
+```
+
+Contact plots
+
+```{r pressure, echo=FALSE}
+
+
+plots()
+
+
+```
+
+## Estimate indoor Home ranges
+
+Estimate the home range of a targeted individual.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Including Plots
 
-You can also embed plots, for example:
+Explanation of the subsection.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Including Plots
+
+Explanation of the subsection.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Including Plots
+
+Explanation of the subsection.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Including Plots
+
+Explanation of the subsection.
 
 ```{r pressure, echo=FALSE}
 plot(pressure)

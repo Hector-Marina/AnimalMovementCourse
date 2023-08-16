@@ -5,26 +5,137 @@ date: "2023-09-04"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+##C:\Users\user\Documents\\2 - Uppsala\\02-Analyses\\00-GitHubProjects\SocialNetworkAnalyses\scripts\\00-tests\\03-SNA_stERGM_reproducible.R ##And upload the corresponding files instead those that you uploaded already.
+
+# Social network analysis
+
+Introduction about the script. Different parts: with a short description and links intra-document.
+
+1.  [Read farm information](#RFI)
+2.  [Plot adjacency matrices](#PAM)
+3.  [Read FA interpolated data](#RPAI)
+4.  [Build the network](#BTN)
+5.  [Plot the network](#PTN)
+6.  [Estimate the topological parameters](#ETP)
+7.  [Plot topological parameters](#PTP)
+8.  [Filtering networks](#FNS)
+9.  [Exponential random graph models](#ERGM)
+
+### Required packages and functions
+
+```{r pressure, echo=FALSE}
+#library(plyr);library(dplyr)
+library(statnet)
+#library(coda)
+#library(tergm)
+#library(tsna)
+#library(ndtv)
+library(htmlwidgets)
+#library(texreg)
+#library(latticeExtra)
+
+source("scripts/Sep.../.SocialNetworkAnalysis_functions.R")
 ```
 
-## R Markdown
+## Read farm information {#RFI}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Read cow information
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
 
-```{r cars}
-summary(cars)
+CPheno <- read.table("data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
+
+
 ```
 
-## Including Plots
+Reading Age cntemporary matrix
 
-You can also embed plots, for example:
+```{r}
+
+AGEcont<-list()
+AGEcont[[1]]<-read.table("data/raw/indoor/AGEcontemporary_EarlyLactationGroup.csv", header = FALSE, sep = ",")
+AGEcont[[2]]<-read.table("data/raw/indoor/AGEcontemporary_LateLactationGroup.csv" , header = FALSE, sep = ",")
+
+```
+
+
+Read Adjacency matrix + Filtering considering animals (or do it in advance?)
+
+```{r pressure, echo=FALSE}
+
+ADJmat_ELG<-list()
+ADJmat_ELG[[1]]<-read.table("data/raw/indoor/Adjacencymatrix_FeedingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ",")
+ADJmat_ELG[[2]]<-read.table("data/raw/indoor/Adjacencymatrix_RestingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ",")
+names(ADJmat_ELG)<-c("FeedingArea","RestingArea")
+
+ADJmat_LLG<-list()
+ADJmat_LLG[[1]]<-read.table("data/raw/indoor/Adjacencymatrix_FeedingArea_LateLactationGroup_20201017.csv",  header = FALSE, sep = ",")
+ADJmat_LLG[[2]]<-read.table("data/raw/indoor/Adjacencymatrix_RestingArea_LateLactationGroup_20201017.csv",  header = FALSE, sep = ",")
+names(ADJmat_LLG)<-c("FeedingArea","RestingArea")
+
+```
+
+
+
+## Plot adjacency matrices {#PAM}
+
+```{r pressure, echo=FALSE}
+
+
+heatmap()
+
+```
+
+## Read FA interpolated data {#RPAI}
+
+-   select two animals and plot contacts graphs?
+
+```{r pressure, echo=FALSE}
+
+ggplottt
+
+```
+
+## Build the network {#BTN}
+
+```{r pressure, echo=FALSE}
+
+Cedges <- network(mat,directed=FALSE)
+
+```
+
+## Plot the network {#PTN}
+
+```{r pressure, echo=FALSE}
+
+
+
+```
+
+## Estimate the topological parameters {#ETP}
 
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Plot topological parameters {#PTP}
+
+Regression wiht this information and the cows characteristics?
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+## Filtering networks {#FNS}
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+## Exponential random graph models {#ERGM}
+
+Try all cows characteristics all together + one by one?
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
