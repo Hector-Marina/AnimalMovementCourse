@@ -1,8 +1,8 @@
-# Intro Exercise
+# Intro Exercise (UNDER CONSTRUCTION!)
 Here is some exercise that will help you to 
 - verify your had installed all the packages that we need during the course
 - get familiar with the GitHub content
-- Run simple descriptive statistics on the course data
+- run simple descriptive statistics on the course data
 
 ## Package we need during the course
 
