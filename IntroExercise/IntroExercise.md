@@ -14,8 +14,15 @@ Here is the list of the package we need:
 
 
 ## Descriptive statistics exercises
-### EX1: how many individuals
+Please read in the data file "Indoor: example_file_name"
+### EX1: Number of individuals
+Please test to summarise how many individuals contain in this file.
 
-### EX2: number of points per individual
+### EX2: Number of points per individual
+Please choose one of the individuals, and test to summarise the number of data points of this individual contained in these files.
 
-### EX3: some simple plots
+### EX3: Simple plots
+Please plot the individual you choose positions during the time period 11:00-13:59.
+
+
+
