@@ -21,7 +21,7 @@ Please test to summarise how many individuals contain in this file.
 ### EX2: Number of points per individual
 Please choose one of the individuals, and test to summarise the number of data points of this individual contained in these files.
 
-### EX3: Simple plots
+### EX3: Simple plots (maybe too much?)
 Please plot the individual you choose positions during the time period 11:00-13:59.
 
 
