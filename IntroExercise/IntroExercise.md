@@ -14,7 +14,7 @@ Here is the list of the package we need:
 
 
 ## Descriptive statistics exercises
-Please read in the data file "Indoor: example_file_name"
+Please read in the data file ./data/raw/indoor/FA_EarlyLactationGroup_20201017.txt
 ### EX1: Number of individuals
 Please test to summarise how many individuals contain in this file.
 
