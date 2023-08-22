@@ -31,7 +31,7 @@ Here is the list of the package we need:
   #### Step 2: Number of points per individual
   Please choose one of the individuals from the individual list file (./data/raw/indoor/EarlyLactationGroup_idList.txt), and test to summarise the number of data points of this individual contained in the position data file.
 
-  #### Step 3: Simple plots (maybe too much?)
+  #### Step 3: Simple plots
   Please plot this individual's positions during the period 11:00-13:59.
 
 
