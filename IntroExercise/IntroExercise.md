@@ -16,23 +16,23 @@ Here is the list of the package we need:
 ## Descriptive statistics exercises
 
 ### Exercise 1
-Please read in the data file ./data/raw/outdoor/gpsdata_april_june2021.csv
-#### Step 1: Number of individuals
-Please test to summarise how many individuals contain in this file.
+  Please read in the data file ./data/raw/outdoor/gpsdata_april_june2021.csv
+  #### Step 1: Number of individuals
+  Please test to summarise how many individuals contain in this file. 
 
-#### Step 2: Simple plots 
-Please choose one of the individuals, and plot this individual's trajectory under the study period.
+  #### Step 2: Simple plots 
+  Please choose one of the individuals, and plot this individual's trajectory under the study period.
 
 ### Exercise 2
-Please read in the data file ./data/raw/indoor/FA_EarlyLactationGroup_20201017.txt
-#### Step 1: Number of individuals
-Please test to summarise how many individuals contain in this file.
+  Please read in the data file ./data/raw/indoor/FA_EarlyLactationGroup_20201017.txt
+  #### Step 1: Number of individuals
+  Please test to summarise how many individuals contain in this file.
 
-#### Step 2: Number of points per individual
-Please choose one of the individuals, and test to summarise the number of data points of this individual contained in these files.
+  #### Step 2: Number of points per individual
+  Please choose one of the individuals from the individual list file (./data/raw/indoor/EarlyLactationGroup_idList.txt), and test to summarise the number of data points of this individual contained in the position data file.
 
-#### Step 3: Simple plots (maybe too much?)
-Please plot the individual you choose positions during the time period 11:00-13:59.
+  #### Step 3: Simple plots (maybe too much?)
+  Please plot this individual's positions during the period 11:00-13:59.
 
 
 
