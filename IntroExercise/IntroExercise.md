@@ -1,4 +1,4 @@
-# Intro Exercise (UNDER CONSTRUCTION!)
+# Intro Exercise (Preparation time 1-2 hour)
 Here is some exercise that will help you to 
 - verify you have installed all the packages that we need during the course
 - get familiar with the GitHub content
