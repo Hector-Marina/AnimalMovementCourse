@@ -1,0 +1,89 @@
+# Animal Movement - PhD course  
+## Intro Exercise  
+
+*Hej Hej*!  
+
+Welcome to the Animal Movement - PhD course. We have prepare some exercises that will help you to:  
++ verify you have installed all the packages that we need during the course  
++ get familiar with the GitHub content  
++ run simple descriptive statistics on the course data   
+
+To run this script correctly, we recommend that you open the script ("*AM_IntroExercise.Rmd*") from R-Studio. This will allow you to modify the contents of the script in the various command boxes and save the changes and results. We have estimated a preparation time of 1-2 hours.  
+
+Let's get to work! ;)  
+
+### Package instalation  
+We have prepare an script to help you install all the packages we need during the course. This script will first check that you have the correct version of R installed, and then proceed to install the required R packages, if they were not already installed. First, lets see how it works:  
+
+1. Check if a package is already installed  
+```{r eval=FALSE}
+requireNamespace("ggplot2")==TRUE
+```
+
+2. Install the package if it was not already installed  
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+3. Check if the installation was performed correctly  
+```{r eval=FALSE}
+requireNamespace("ggplot2")==TRUE
+```
+Now you can execute the package installation script:  
+```{r eval=FALSE}
+source(".installpackages.R")
+```
+---
+**NOTE**
+If you have not opened the document as instructed, you may need to change the command path. The installation script is in this directory: ./scripts/sep4_session2_afternoon/.installpackages.R  
+---
+
+### Descriptive statistics exercises   
+The following two exercises will familiarize you with the data we will be using during the course.  
+
+#### Exercise 1: Outdoor data  
+##### Step 1: Read in the outdoor data file  
+Read the file ./data/raw/outdoor/gpsdata_april_june2021.csv.  
+```{r}
+# Write here your code
+```
+
+##### Step 2: Read in the outdoor data file   Number of individuals
+Test to summarise how many individuals this file contains.
+```{r}
+
+```
+##### Step 3: Simple plots 
+Please choose one of the individuals and plot the location of this individual during the study period.
+```{r}
+
+```
+
+#### Exercise 2: Indoor data
+##### Step 1: Read in the indoor data file  
+Read the file ./data/raw/indoor/FA_EarlyLactationGroup_20201017.txt.  
+```{r}
+# Write here your code
+```
+
+##### Step 2: Number of data points per individual
+Select one of the individuals from the individual list file (./data/raw/indoor/EarlyLactationGroup_idList.txt) and test to summarise the number of data points of this individual contained in the position data file.
+```{r}
+
+```
+
+##### Step 3: Simple plots 
+Please read the file (./data/raw/indoor/Cow_Phenotypes.txt) where you can find the cow's phenotype information. Plot the position of all cows in parity 2 during the period 11:00-11:59.
+```{r}
+
+```
+
+
+---
+**NOTE**
+When you have finished the exercise, save your changes. Remember not to "pull" once you have changed the files, or they will overwrite the original repository contents. If you want to make sure this doesn't happen, copy the file out of the directory.  
+Any questions that arise will be answered on the first day of the course after we have presented the data we will be using during the week. This exercise has many possible solutions, we will upload one of them to the repository on the first day. 
+--- 
+
+
+
