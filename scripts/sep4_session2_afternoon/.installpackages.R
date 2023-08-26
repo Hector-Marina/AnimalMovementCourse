@@ -10,9 +10,9 @@ if (!grepl("R version 4.2.3", R.version$version.string)) {
 }
 
 # List of packages required for the pipeline
-ListPackages<-c("plyr","dplyr", "ggplot2", # General packages
-                #"", # Outdoor packages
-                "sp","rgdal","adehabitatHR","igraph", "ergm", "network", "vroom" # Indoor  packages
+ListPackages<-c("plyr", "dplyr", "ggplot2", "tidyverse", "lubridate", "knitr", # General packages
+                "amt", "ctmm", "adehabitatLT", "circular", "move2", "KernSmooth", "sf", "raster", "terra", # Outdoor packages
+                "sp", "rgdal", "adehabitatHR", "igraph", "ergm", "network", "vroom" # Indoor  packages
                 )
 
 for (i in c(1:length(ListPackages))){
