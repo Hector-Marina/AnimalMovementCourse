@@ -1,0 +1,510 @@
+---
+title: "AM_Sep7_SocialNetworkAnalysis"
+author: "Hector Marina"
+date: "2023-09-04"
+output: html_document
+---
+
+<style>
+  body {
+    text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+htmltools::tagList()
+```
+
+# Social network analysis
+
+## Introduction
+
+This tutorial provides an overview of R packages for social network analysis using indoor positioning data of dairy cattle. We will analyse information from a commercial dairy farm in Sweden. The farm has installed an ultra-wideband based Real-Time Location System (RTLS) that provides the location of all the cows on the farm. Lactating cows were equipped with a tag attached to their collars. Using the position information of the cows, we can estimate daily spatial interaction networks and study how cow characteristics affect the network structure.\
+1.  [Farm information](#rfi)\
+2.  [Position data](#rpai)\
+3.  [Social contact information](#pam)\
+4.  [Build the networks](#btn)\
+5.  [Plot the networks](#ptn)\
+6.  [Topological parameters](#etp)\
+7.  [Plot topological parameters](#ptp)\
+8.  [Filtering networks](#fns)\
+9.  [Exponential random graph models](#ergm)\
+
+### Required packages
+
+```{r message=FALSE}
+library("ggplot2")   # represent the animal movements
+library("png")       # png in the background of a ggplot
+library("grid")      # png in the background of a ggplot
+library("gganimate") # Gifs
+library("network")   # Built and analyse networks
+library("ergm")      # Run exponential random graph models
+library("igraph")    # Built and analyse networks
+```
+
+## Farm information {#rfi}
+
+Position data was collected from a Swedish commercial dairy farm. This farm housed around 210 lactating dairy cows (Holstein, Red Dairy Cattle, and Crossbred) in a non-insulated free-stall barn. The farm is divided into two milking groups, early and late lactation groups, each with a pen area of 14 m × 56 m and 102-103 cubicles, with rubber mattresses and sawdust as bedding material. Further information about the farm can be found in [Hansson et al., 2023](https://doi.org/10.3168/JDS.2022-21915). First, we read the information about the cows in the early lactation group at this Swedish dairy farm. Cow information contains:\
+- *MatID*: Identification code for the social network matrices.\
+- *Tag*: Tag mounted code.\
+- *ID*: Tag mounted identification code.\
+- *Parity*: Number of current lactation.\
+- *Lactation_stage*: Stage of lactation [Early (7- 49 Days in Milk), Mid (50 -179 DIM) or Late (≥180 DIM)].\
+- *Pregnancy_status*: Stage of pregnancy (0: Open, 1: Pregnant).\
+- *Breed*: Breed of each cow (HOL: Holstein, RDC: Red Dairy Cattle or CROSS: Crossbreed).\
+- *Claw_health*: Status of claw (0: Healthy, 1: Minor or mayor lesions).\
+- *Time_in_area*: Proportion of time each animal spent per day in the feeding area by dividing it by the total time reported by the RTLS.\
+
+```{r}
+CPheno <- read.table("../../data/raw/indoor/Cow_Phenotypes.csv", header = TRUE, sep = ",")
+nrow(CPheno)
+```
+
+Second, we read the contemporary age matrix. This binary matrix relate dairy cows born within seven days in the same farm:\
+
+```{r}
+AGEcont<-as.matrix(read.table("../../data/raw/indoor/AGEcontemporary_EarlyLactationGroup.csv", header = FALSE, sep = ","))
+dim(AGEcont)
+```
+
+## Position data {#rpai}
+
+The FA interpolated file contains the position information of the lactating cows, which has been interpolated using the Modified Akima interpolation method. The position information allow us to estimate the Euclidean distance per pair of cows every second (theoretically). Further relevant information on the interpolation method used can be found in [Ren et al., 2022](https://doi.org/10.3389/fanim.2022.896666). We considered that cow pairs could interact if they were less than 2.5 metres apart during the day. Therefore, spatial interactions were estimated considering this threshold. Further information on the method and its validation can be found in [Hansson et al., 2023](https://doi.org/10.3168/JDS.2022-21915).\
+
+```{r}
+FA_data <- read.table(
+  unz("../../data/raw/indoor/FA_EarlyLactationGroup_20201017_interpolated.zip", "FA_EarlyLactationGroup_20201017_interpolated.txt"), 
+  header=TRUE,  sep=",", col.names = c("ID","Tag","Time","x","y"))
+```
+
+To explore the movement of these animals and where their social contact occurred, we will plot the movements of a particular pair of cows. Filter the position data of two selected individuals:\
+
+```{r}
+Tag1<-c("0024E209"); Tag2<-c("0024EEFC")
+FA_data<-FA_data[FA_data$Tag %in% c(Tag1,Tag2),]
+nrow(FA_data)
+```
+
+Read the farm map as an image to use in the background of animal movement plots:\
+
+```{r}
+Swedish_r <- png::readPNG('../../data/processed/indoor/Ladugaarden_Barn_blueprint.png')
+Swedish_rg <- grid::rasterGrob(Swedish_r, width=unit(1,"npc"), height=unit(1,"npc"))
+X_png<-3340; Y_png=8738
+```
+
+Estimate the euclidean distance in meters between the cows' positions per second and print the number of seconds in contact. The threshold selected was 10 minutes (600s):\
+
+```{r}
+FA_data_Euc<-cbind(FA_data[FA_data$Tag==Tag1,c('Time','x','y')], FA_data[FA_data$Tag==Tag2,c('x','y')])
+colnames(FA_data_Euc)<-c('Time','x1','y1','x2','y2')
+FA_data_Euc$Eucdist <- sqrt((FA_data_Euc[,'x2']-FA_data_Euc[,'x1'])**2 + (FA_data_Euc[,'y2']-FA_data_Euc[,'y1'])**2)/100
+nrow(FA_data_Euc[FA_data_Euc$Eucdist<2.5,])
+```
+
+Set a color for each animal and highlight when they are within the distance limit (2.5m):\
+
+```{r}
+FA_data$TagCol<-NA
+FA_data[FA_data$Tag==Tag1,]$TagCol<-"green"
+FA_data[FA_data$Tag==Tag2,]$TagCol<-"blue"
+FA_data[FA_data$Time %in% c(FA_data_Euc[FA_data_Euc$Eucdist<2.5,"Time"]), ]$TagCol<-"red"
+```
+
+Produce an animation of the movements and spatial contact of this pair of cows:\
+
+```{r message=FALSE}
+# Plot the walked areas
+{ggplot(FA_data, aes(x, y, color = TagCol)) +
+  annotation_custom(Swedish_rg) +
+  geom_point(color = FA_data$TagCol) +
+  theme_void() +
+  theme(legend.position = "none", aspect.ratio = Y_png/X_png) +
+  xlim(0,X_png) + ylim(1695,Y_png) +
+  transition_time(c(1:86400,1:86400)) +
+  ease_aes('linear') +
+  shadow_mark(alpha = 0.2, size = 0.3)}
+```
+
+## Social contact information {#pam}
+
+The social contact information analysed in this tutorial is based on the spatial interaction among the cows included in the early lactation group. The binary adjacency matrices represent the presence (1) and absence (0) of social contact between each pair of cows. We considered that contact occurred between a pair of cows if they spent more than 10 minutes per day at a distance of less than 2.5 metres. Social contacts were calculated using the Real-Time Location System (RTLS) information. Further information on the method can be found in [Hansson et al., 2023](https://doi.org/10.3168/JDS.2022-21915).\
+
+```{r}
+ADJmat <- list() # Read adjacency matrix as a list
+ADJmat[["FeedingArea"]] <- as.matrix(read.table("../../data/raw/indoor/Adjacencymatrix_FeedingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ","))
+ADJmat[["RestingArea"]] <- as.matrix(read.table("../../data/raw/indoor/Adjacencymatrix_RestingArea_EarlyLactationGroup_20201017.csv", header = FALSE, sep = ","))
+```
+
+One way of assessing the content of an adjacency matrix is to display it as a heatmap:\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+heatmap(ADJmat[["FeedingArea"]],Colv = NA,Rowv = NA, symm = TRUE, revC = TRUE)
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+Compare the total number of social contacts detected in both functional areas:\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+sum(ADJmat[["FeedingArea"]])
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+Contacts detected per functional area out of the total number of possible contacts (%). For undirected networks the total number of possible contacts is $n(n−1)/2$.\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+sum(ADJmat[["FeedingArea"]])/((nrow(ADJmat[["FeedingArea"]])^2)-nrow(ADJmat[["FeedingArea"]]))
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+## Build the networks {#btn}
+
+The RTLS information allows us to estimate the euclidean distance between the lactating cows. However, using only a combination of time and euclidean distance does not allow us to determine which cow started the interaction. Therefore, when we create the networks, using the `network` package, we define the social contact as undirected `directed=FALSE`:\
+
+```{r}
+FA_net <- network::network(ADJmat[["FeedingArea"]],directed=FALSE)
+RA_net <- network::network(ADJmat[["RestingArea"]],directed=FALSE)
+```
+
+The age contemporary network should be built following the same reasoning:\
+
+```{r}
+AGEnet <- network::network(AGEcont,directed=FALSE)
+```
+
+## Plot the networks {#ptn}
+
+Set the color of the individuals according to a cow characteristic (Parity):\
+
+```{r}
+CPheno$NetCol<-ifelse(CPheno$Parity=="1","purple", ifelse(CPheno$Parity=="2","blue", "red"))
+```
+
+Plot the social networks\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+plot(FA_net, main="Feeding area", displaylabels=F, vertex.col=CPheno$NetCol, edge.col="lightgreen")
+```
+
+## Resting area:
+
+```{r}
+#
+```
+
+# 
+
+Plot the age contemporary network:\
+
+```{r}
+plot(AGEnet, main="Age network", displaylabels=F, vertex.col=CPheno$NetCol, edge.col="purple")
+```
+
+## Topological parameters {#etp}
+
+Estimate three topological centrality parameters of the networks:\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+FA_degree     <-sna::degree(FA_net, gmode="graph")
+FA_closeness  <-sna::closeness(FA_net, gmode="graph")
+FA_betweenness<-sna::betweenness(FA_net, gmode="graph")
+
+{par(mfrow=c(1,3))
+  hist(FA_degree, main="FA_degree", xlab = NA, ylab = NA)
+  hist(FA_closeness, main="FA_closeness", xlab = NA, ylab = NA)
+  hist(FA_betweenness, main="FA_betweenness", xlab = NA, ylab = NA)
+}
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+## Plot topological parameters {#ptp}
+
+Displaying the importance of the different components of the social network will help to interpret it at a glance. In this tutorial, we are going to illustrate the networks including the topological centrality parameter information. Note that depending on the centrality parameter we want to illustrate, we will have to adjust the scale.\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+plot(FA_net, main="Feeding area", displaylabels=F, vertex.col=CPheno$NetCol, vertex.cex=FA_degree/(max(FA_degree)/2), edge.col="lightgreen")
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+## Filtering networks: Egocentric networks {#fns}
+
+In social network analysis, an egocentric network is a sub network centered around a specific individual, referred to as the "ego." This sub network includes the ego (central individual) along with their directly connected social contacts, known as neighbors. These networks provide insights into the immediate social environment of an individual. Analyzing egocentric networks can provide information about: - *Neighbors degree Centrality*: The number of connections each neighbor has. This gives insight into the social activity and prominence of the ego's contacts. - *Ties among neighbors*: The presence or absence of connections between neighbors. This reveals potential subgroups within the ego's network. - *Structural Holes*: The absence of connections between alters indicates the possibility of the ego transmitting information between disconnected parts of its network. - *Homophily*: Exploring whether the neighbors share certain characteristics with the ego.
+
+Plot an egocentric network focused on one individual:\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+# Convert the Adjacency matrix to an igraph network
+FA_egonet <- igraph::graph.adjacency(ADJmat[["FeedingArea"]], mode = "undirected")
+# Plot an egocentric network focused on the 5th individual
+EgoID<-5 #Number
+FA_egoplot <- induced_subgraph(FA_egonet, c(EgoID,neighbors(FA_egonet, EgoID)))
+EgoNcolour <- CPheno$NetCol[V(FA_egonet)$name %in%  V(FA_egoplot)$name]
+plot(FA_egoplot, main="Feeding area", displaylabels = TRUE, vertex.color=EgoNcolour, vertex.size=(degree(FA_egoplot, mode="in")+5), edge.color = "darkgreen", vertex.label.color = "black")
+
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+## Exponential random graph models {#ergm}
+
+Study how the cow's characteristics included in `CPheno` (Parity, Lactation_stage, Pregnancy_status, Breed, Claw_health, Time_in_area) and the kindergarten effect (AGEnet) influence the spatial contacts detected in both functional areas (Feeding and Resting areas). This information can be analyzed in several ways, during this tutorial we will explain some of them (nodemix, nodefactor, nodematch, nodecov and edgecov).\
+
+### Incorporate fixed effect information into the networks
+
+#  {.tabset}
+
+## Feeding area
+
+```{r}
+# Feeding area:
+FA_net %v% "Parity"          <- as.character(CPheno$Parity)
+FA_net %v% "Lactation_stage" <- as.character(CPheno$Lactation_stage)
+FA_net %v% "Pregnancy_status"<- as.character(CPheno$Pregnancy_status)
+FA_net %v% "Breed"           <- as.character(CPheno$Breed)
+FA_net %v% "ClawHealth"      <- as.character(CPheno$Claw_health)
+FA_net %v% "Time_in_area"    <- as.numeric(CPheno$Time_in_area)
+```
+
+## Resting area
+
+```{r}
+#
+```
+
+# 
+
+### Nodemix
+
+Examines the differences in the number of contacts established between each pair of classes included in each of the fixed factors (e.g., parity and lactation_stage).\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r message=FALSE}
+FA_ergm_NX <- ergm(FA_net ~ edges + nodemix("Parity") + nodemix("Lactation_stage") + nodemix("Pregnancy_status") + nodemix("Breed") + nodemix("ClawHealth"))
+```
+
+```{r}
+summary(FA_ergm_NX)
+```
+
+## Resting area
+
+```{r message=FALSE}
+#
+```
+
+```{r}
+#
+```
+
+# 
+
+### Nodefactor
+
+Examines the differences in the number of contacts established by each of the classes included in each of the fixed factors (e.g., parity and lactation_stage).\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r message=FALSE}
+FA_ergm_NF <- ergm(FA_net ~ edges + nodefactor("Parity") + nodefactor("Lactation_stage") + nodefactor("Pregnancy_status") + nodefactor("Breed") + nodefactor("ClawHealth"))
+```
+
+```{r}
+summary(FA_ergm_NF)
+```
+
+## Resting area
+
+```{r message=FALSE}
+#
+```
+
+```{r}
+#
+```
+
+# 
+
+### Nodematch
+
+Examines the differences in the number of contacts established by each of the classes contained in each of the fixed factors with other individuals of the same class (e.g., parity and lactation_stage).\
+
+#  {.tabset}
+
+## Feeding area
+
+```{r message=FALSE}
+FA_ergm_NM <- ergm(FA_net ~ edges + nodematch("Parity") + nodematch("Lactation_stage") + nodematch("Pregnancy_status") + nodematch("Breed") + nodematch("ClawHealth"))
+```
+
+```{r}
+summary(FA_ergm_NM)
+```
+
+## Resting area
+
+```{r message=FALSE}
+#
+```
+
+```{r}
+#
+```
+
+# 
+
+### Nodecov
+
+Investigates how a quantitative variable describing nodes might affect the contacts established in the network. In this particular case, it explores how the amount of time animals spend in different areas can affect contacts they established in the Feeding and Resting areas.
+
+#  {.tabset}
+
+## Feeding area
+
+```{r message=FALSE}
+FA_ergm_NC <- ergm(FA_net ~ edges + nodecov("Time_in_area"))
+```
+
+```{r}
+summary(FA_ergm_NC)
+```
+
+## Resting area
+
+```{r message=FALSE}
+#
+```
+
+```{r}
+#
+```
+
+# 
+
+### Edgecov
+
+Investigates how a quantitative variable describing edges might affect the contacts established in the network. In this particular case, it explores how the kindergarten effect (dichotomic variable) can affect the contact established in the Feeding and Resting areas.
+
+#  {.tabset}
+
+## Feeding area
+
+```{r message=FALSE}
+FA_ergm_EC <- ergm(FA_net ~ edges + edgecov(AGEnet, attrname=NULL))
+```
+
+```{r}
+summary(FA_ergm_EC)
+```
+
+## Resting area
+
+```{r message=FALSE}
+#
+```
+
+```{r}
+#
+```
+
+# 
+
+### Final model
+
+Having carried out these analyses, which of the above factors would you like to include in the final model? Different combinations will answer different scientific questions. Think about the question you want to answer and run the model that best fits it. For more terminology supported by the ERGM programme see [ERGM terms cross-reference](https://cran.r-project.org/web/packages/ergm/vignettes/ergm-term-crossRef.html).
+
+#  {.tabset}
+
+## Feeding area
+
+```{r eval=FALSE}
+FA_ergm_All <- ergm(FA_net ~ edges + ... )
+```
+
+## Resting area
+
+```{r eval=FALSE}
+RA_ergm_All <- ergm(FA_net ~ edges + ... )
+```
+
+# {}
+
+#### Recommended literature
+
+- Hansson, I., Silvera, A., Ren, K., Woudstra, S., Skarin, A., Fikse, W. F., Nielsen, P. P., & Rönnegård, L. (2023). Cow characteristics associated with the variation in number of contacts between dairy cows. Journal of Dairy Science.
+- Ren, K., Alam, M., Nielsen, P. P., Gussmann, M. K., & Rönnegård, L. (2022).\ Interpolation methods to improve data quality of indoor positioning data for dairy cattle. Frontiers in Animal Science, 53.\
+- Ren, K., Nielsen, P. P., Alam, M., & Rönnegård, L. (2021). Where do we find missing data in a commercial real-time location system? Evidence from 2 dairy farms. JDS Communications, 2(6):345-350.\
+- Churakov, M., Silvera, A. M., Gussmann, M., & Nielsen, P. P. (2021). Parity and days in milk affect cubicle occupancy in dairy cows. Applied Animal Behaviour Science, 105494.\
