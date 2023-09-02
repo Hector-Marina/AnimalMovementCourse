@@ -1,10 +1,11 @@
-#######################################################X
-#----Analysis of Animal Movement Data in R Workshop----X
-#-------------------- Introduction --------------------X
-#----------------Last updated 2023-08-14---------------X
-#---------------------- Exercise ----------------------X
-#--- Prepared by: Johannes Signer (jsigner@gwdg.de) ---X
-#######################################################X
+###############################################################X
+#----Analysis of Animal Movement Data in R Workshop------------X
+#-------------------- Introduction ----------------------------X
+#----------------Last updated 2023-08-14-----------------------X
+#---------------------- Exercise ------------------------------X
+#--- Prepared by: Johannes Signer (jsigner@gwdg.de) -----------X
+#---------------- Bernardo Niebuhr (bernardo.brandao@nina.no) -X
+###############################################################X
 
 
 # General Instruction -----
