@@ -268,7 +268,7 @@ trk2 <- trk1 |>
     # `map` iterates over a list (i.e., applies the function to each element in data). 
     # `~` can be thought of as: "do what ever comes afterwards to each element .x", 
     # where `.x` is the element currently under evaluation. 
-    data.resampled = map(data, ~ track_resample(.x, rate = hours(4), tolerance = minutes(10)))
+    data.resampled = map(data, ~ track_resample(.x, rate = hours(4), tolerance = minutes(5)))
     ) |> 
   # select columns
   select(id, data.resampled) |> 
