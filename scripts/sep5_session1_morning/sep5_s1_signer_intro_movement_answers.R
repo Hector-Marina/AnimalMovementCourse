@@ -23,7 +23,10 @@ library(ggplot2)
 
 # Load data ---- 
 
-# We use GPS data from reindeer from Sweden. The data is saved as a *.gpkg 
+# We use GPS data from reindeer from Sweden. 
+# Sometimes GPS data is provided as a type of spatial data, such as an 
+# ESRI Shapefile (*.shp) or a Geopackage (*.gpkg)
+# We start by reading a file saved as a *.gpkg 
 # (GeoPackage), a common GIS vector data format. We can use the function 
 # `st_read` from the `sf`-Package to read the into R. 
 
@@ -34,8 +37,27 @@ nrow(dat)
 st_crs(dat)
 dat
 
+# We can plot that
+# All positions of the same color pertain to the same individual/collar
+plot(dat[1])
+
+# However, it is more common that GPS data are downloaded from collar
+# providers in an even more raw table version, in csv. We now read
+# the raw data as csv.
+
+dat1 <- read.csv("data/raw/outdoor/gpsdata_april_june2021.csv")
+head(dat1)
+str(dat1)
+nrow(dat1)
+dat1
+
+# plot
+dat1 |> 
+  ggplot(aes(X, Y, color = Collar_ID)) +
+  geom_point()
+
 # We now have to make sure that the date column is correctly parsed. 
-class(dat$timestamp)
+class(dat1$timestamp)
 
 # Currently it is a character, but we want it to be a `POSIXct` 
 # (a date-time format for R)
@@ -44,9 +66,9 @@ class(dat$timestamp)
 # also use the `strptime()` function from base R, but `lubirdate`'s parsing
 # functions are often a bit easier to memorize.
 
-dat$ts <- ymd_hms(dat$timestamp, tz = "UTC")
-head(dat$ts)
-str(dat$ts)
+dat1$ts <- ymd_hms(dat$timestamp, tz = "UTC")
+head(dat1$ts)
+str(dat1$ts)
 
 # Important: if your time zone is different from UTC (the default), make sure
 # you correctly specify the time zone with the argument `tz`.
@@ -61,25 +83,17 @@ str(dat$ts)
 # stamps, additional columns and a coordinate reference system (crs) can be
 # passed to the function using the EPSG code.
 
-# This is a bit trickier here (because we start with a gpkg), we have to start
-# by creating first a new data set and then use the function `make_track()`.
-
-dat1 <- data.frame(
-  x = st_coordinates(dat)[, 1], 
-  y = st_coordinates(dat)[, 2], 
-  t = dat$ts, 
-  id = dat$Collar_ID
-)
-
-head(dat1)
-
-# We can also query the CRS from `dat`.
+# When downloaded in csv, we do not have information of the CRS of the data.
+# This must be found in the data provider portal. Here it is the CRS SWEREF99 TM,
+# the standard CRS for Sweden (also known for its EPSG code 3006).
+# We can also query the CRS from `dat`, the vector file read in the beginning,
+# since this is a spatial file.
 
 st_crs(dat)
 
 # Which we can use directly later. 
 
-trk1 <- make_track(dat1, x, y, t, id = id, crs = st_crs(dat))
+trk1 <- make_track(dat1, X, Y, ts, id = Collar_ID, crs = st_crs(dat))
 # or you could set the CRS through the EPSG code:
 # make_track(dat1, x, y, t, id = id, crs = 3006)
 
@@ -89,6 +103,8 @@ trk1 <- make_track(dat1, x, y, t, id = id, crs = st_crs(dat))
 
 # TODO!
 
+
+#----------------------------------
 
 # Working with tracks ----
 
@@ -227,10 +243,44 @@ s2 <- animal3 %>% steps_by_burst()
 s2 |> print(n = Inf)
 
 # ... E: Exercise --- 
-# Up to know we only considered one animal. Repeat the steps from above
-# (resampling the track to a 4 hour sampling rate) and then create steps
-# accounting for bursts for each animal. You may want to create a list column to 
-# the object `trk1`.
+# Up to now we only considered one animal. Repeat the steps from above
+# (resampling the track to a 4 hour sampling rate) for each animal while 
+# accounting for bursts of each animal. Then, save the resampled track object 
+# in a file called "gps_data_track_resamp4.rds" within the folder
+# "data/processed/outdoor/".
+# Use the function saveRDS() to save the object, so it can be read back to
+# R without any loss of information (object class, types of columns etc).
+#
+# IMPORTANT: this object will be used for the next exercises
+#
+# TIP: You may want to create a list column to the object `trk1` and 
+# use nest() and unnest(), following the class slides.
+
+# ... S: Solution ---
+trk2 <- trk1 |> 
+  # Specify the name of the new column (here data). All columns except id
+  # will be put into this list. 
+  nest(data = -id) |> 
+  # We can use mutate to create new columns
+  mutate(
+    # First we create a new column with the resampled data. 
+    # `map` iterates over a list (i.e., applies the function to each element in data). 
+    # `~` can be thought of as: "do what ever comes afterwards to each element .x", 
+    # where `.x` is the element currently under evaluation. 
+    data.resampled = map(data, ~ track_resample(.x, rate = hours(4), tolerance = minutes(10)))
+    ) |> 
+  # select columns
+  select(id, data.resampled) |> 
+  # unnest to return to a data.frame structure
+  unnest(data.resampled)
+trk2
+
+# save the object
+saveRDS(trk1, file = "data/processed/outdoor/gps_data_track_resamp4.rds")
+
+# Do the same again - Repeat the steps from above (resampling the track to a 4 
+# hour sampling rate) for each animal while account for bursts, but now also 
+# compute the steps for each burst of each animal. 
 
 # ... S: Solution ---
 
