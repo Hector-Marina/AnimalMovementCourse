@@ -5,6 +5,7 @@
 #---------------------- Exercise ------------------------------X
 #--- Prepared by: Johannes Signer (jsigner@gwdg.de) -----------X
 #---------------- Bernardo Niebuhr (bernardo.brandao@nina.no) -X
+#---------------- based on material by Brian Smith ------------X
 ###############################################################X
 
 # Load packages ----
