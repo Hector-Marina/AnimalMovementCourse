@@ -27,11 +27,11 @@ Place: Ekenäs herrgård in Sörmland, Sweden.
  - Introduction to data formats (A,K,L).
  
 ### Day 2:
- - Estimating space use of animals using home ranges (J).
+ - Estimating space use of animals using home ranges (A,J,B).
  - What is (habitat) selection? (A,B)
  
 ### Day 3:
- - Habitat selection and Step-selection (A,B,J).
+ - Habitat selection and Step-selection (J,A,B).
  - Connectivity and Simulation modelling (B).
  
 ### Day 4:
