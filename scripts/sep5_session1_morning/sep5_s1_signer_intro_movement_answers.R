@@ -102,7 +102,19 @@ trk1 <- make_track(dat1, X, Y, ts, id = Collar_ID, crs = st_crs(dat))
 # function `as_track()` on `dat`.
 # Check ?as_track.
 
-# TODO!
+# Try it!
+
+
+
+# We now save this object in a file  called "gps_data_track.rds" 
+# within the folder "data/processed/outdoor/".
+# We use the function saveRDS() to save the object, so it can be read back to
+# R without any loss of information (object class, types of columns etc).
+#
+# IMPORTANT: this object will be used for the next exercises
+
+# save the object
+saveRDS(trk1, file = "data/processed/outdoor/gps_data_track.rds")
 
 
 #----------------------------------
@@ -200,8 +212,9 @@ animal4 <- animal3 %>% mutate(sl = step_lengths(.))
 animal4 %>% group_by(burst_) %>% 
   summarize(fs = head(sl, 1), ls = tail(sl, 1)) %>% 
   pivot_longer(-burst_) %>% 
-  ggplot(aes(name, value, group = burst_)) + geom_point(alpha = 0.1) + 
-  geom_line(alpha = 0.1)
+  ggplot(aes(name, value, group = burst_)) + 
+  geom_point(alpha = 0.2) + 
+  geom_line(alpha = 0.2)
 
 
 # Let's repeat the same analysis, but this time with bursts now for calculating
@@ -213,8 +226,9 @@ animal5 <- animal3 %>% nest(data = -burst_) %>%
 animal5 %>% group_by(burst_) %>% 
   summarize(fs = head(sl, 1), ls = tail(sl, 2)[1]) %>% 
   pivot_longer(-burst_) %>% 
-  ggplot(aes(name, value, group = burst_)) + geom_point(alpha = 0.1) + 
-  geom_line(alpha = 0.1)
+  ggplot(aes(name, value, group = burst_)) + 
+  geom_point(alpha = 0.2) + 
+  geom_line(alpha = 0.2)
 
 
 # ... Steps ---- 
@@ -246,13 +260,7 @@ s2 |> print(n = Inf)
 # ... E: Exercise --- 
 # Up to now we only considered one animal. Repeat the steps from above
 # (resampling the track to a 4 hour sampling rate) for each animal while 
-# accounting for bursts of each animal. Then, save the resampled track object 
-# in a file called "gps_data_track_resamp4.rds" within the folder
-# "data/processed/outdoor/".
-# Use the function saveRDS() to save the object, so it can be read back to
-# R without any loss of information (object class, types of columns etc).
-#
-# IMPORTANT: this object will be used for the next exercises
+# accounting for bursts of each animal. 
 #
 # TIP: You may want to create a list column to the object `trk1` and 
 # use nest() and unnest(), following the class slides.
@@ -276,9 +284,8 @@ trk2 <- trk1 |>
   unnest(data.resampled)
 trk2
 
-# save the object
-saveRDS(trk1, file = "data/processed/outdoor/gps_data_track_resamp4.rds")
 
+# ... E: Exercise --- 
 # Do the same again - Repeat the steps from above (resampling the track to a 4 
 # hour sampling rate) for each animal while account for bursts, but now also 
 # compute the steps for each burst of each animal. 

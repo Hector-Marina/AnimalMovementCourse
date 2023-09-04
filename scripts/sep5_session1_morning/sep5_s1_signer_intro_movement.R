@@ -105,6 +105,16 @@ trk1 <- make_track(dat1, X, Y, ts, id = Collar_ID, crs = st_crs(dat))
 # TODO!
 
 
+# We now save this object in a file  called "gps_data_track.rds" 
+# within the folder "data/processed/outdoor/".
+# We use the function saveRDS() to save the object, so it can be read back to
+# R without any loss of information (object class, types of columns etc).
+#
+# IMPORTANT: this object will be used for the next exercises
+
+# save the object
+saveRDS(trk1, file = "data/processed/outdoor/gps_data_track.rds")
+
 #----------------------------------
 
 # Working with tracks ----
@@ -247,13 +257,7 @@ s2 |> print(n = Inf)
 # ... E: Exercise --- 
 # Up to now we only considered one animal. Repeat the steps from above
 # (resampling the track to a 4 hour sampling rate) for each animal while 
-# accounting for bursts of each animal. Then, save the resampled track object 
-# in a file called "gps_data_track_resamp4.rds" within the folder
-# "data/processed/outdoor/".
-# Use the function saveRDS() to save the object, so it can be read back to
-# R without any loss of information (object class, types of columns etc).
-#
-# IMPORTANT: this object will be used for the next exercises
+# accounting for bursts of each animal. 
 #
 # TIP: You may want to create a list column to the object `trk1` and 
 # use nest() and unnest(), following the class slides.
@@ -271,6 +275,7 @@ s2 |> print(n = Inf)
 
 
 
+# ... E: Exercise --- 
 # Do the same again - Repeat the steps from above (resampling the track to a 4 
 # hour sampling rate) for each animal while account for bursts, but now also 
 # compute the steps for each burst of each animal. 

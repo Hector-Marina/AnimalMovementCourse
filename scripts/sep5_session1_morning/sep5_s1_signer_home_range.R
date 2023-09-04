@@ -15,7 +15,7 @@ library(amt)
 
 # Prepare data ----
 # Load prepared tracks 
-dat <- read_rds("data/processed/outdoor/gps_data_track_resamp4.rds")
+dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
 
 # Subset to one random individual
 a1 <- dat %>% 
