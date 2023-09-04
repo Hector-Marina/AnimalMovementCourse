@@ -27,6 +27,7 @@ library(ggplot2)
 #' for the given time period, or we can define the whole region that the whole 
 #' population/group of animal is using based on both GPS-data and expert knowledge.
 
+#---------
 # Load data for the exercises
 # Load prepared tracks 
 dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
@@ -59,11 +60,19 @@ lc_class <- read.csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv"
 
 # MANLY'S INDEX ----
 
+#' We will start by comparing the use of the core areas of an individual
+#' (those areas more intensely used by the animal) with the area available
+#' for the whole population of individuals.
+#' 
+#' We represent the core areas for the one individual as the 50% KDE and the
+#' population home range area as the 95% MCP. 
+
 # Subset to one individual
 a1 <- dat %>% 
   filter(id == "FIT_421931")
 
-#' First we calculate the home range for a1
+#' First we calculate the core areas for a1 (the most used areas, here we use
+#' the 50% KDE isopleth).
 #' The home range computations assume independence between positions
 #' We did not account for that in the earlier estimations of home range, but now
 #' we resample the track to 4 hours to have a regular fix rate
@@ -71,13 +80,12 @@ a1 <- dat %>%
 a1 <- track_resample(a1, rate = hours(4), tolerance = minutes(10))
 a1
 
-#' Create an kernel home range and convert it to an sf-object
+#' Create an 50% kernel home range (core areas) and convert it to an sf-object
 #' to be able to overlay this with the raster data later.
 #' You might want to check the hr_kde() function.
 ?hr_kde 
 
 kde1 <- hr_kde(a1, levels = 0.5)
-
 plot(kde1)
 class(kde1)
 
@@ -116,11 +124,11 @@ table(kde1_v_env$land_cover)
 #' land cover type if we want. However it is enough to just use the number of observations 
 #' to calculate the percentage of each land cover in the home range.
 
-
+#---------
 #' To compare the used area of individual FIT_421931 with how the rest of 
-#' the population use the area we can create a common MCP for all individuals.
-#' Use the solution from the first exercise and resample all data 
-#' to 4 hour fix rate to have the same fix rate for all individuals. 
+#' the population use the area, we can create a common MCP for all individuals.
+#' We use the solution from the exercises of the previous lectures and resample 
+#' all data to 4 hour fix rate to have the same fix rate for all individuals. 
 
 dat2 <- dat |> 
   nest(data = -id) |> 
@@ -158,10 +166,22 @@ head(mcp_all_v_env)
 #' check the number of classes and observations in each class
 table(mcp_all_v_env$land_cover)
 
+#---------
+#' We can visualize this comparison 
+#' The question here is: what was selected by individual within its core area,
+#' if compared to what it had available in a larger context?
+
 # Plot of both individual and population home ranges
 plot(mcp_all_v)
 plot(kde1_v, add = TRUE)
 
+# using the rasters to understand the comparison
+lc_mcp_all <- terra::crop(land_cover, mcp_all_v) |> 
+  terra::mask(mask = mcp_all_v)
+plot(lc_mcp_all)
+plot(kde1_v, add = TRUE)
+
+#---------
 #' Now calculate the proportion of each land cover type and from this compute Manly's index
 #' Use the prop.table-function to calculate the proportions of land cover in each area
 
@@ -209,83 +229,57 @@ manly_classes |> arrange(index)
 
 
 # ... E: Exercise ---- 
-#' What would change if we used the 50% KDE for the individual a1 (instead of the
-#' 50% KDE), and the 95% KDE for this same individual?
+#' What would change if compared the 50% KDE for the individual a1 (still the core areas)
+#' with the 99% KDE for this same individual (and not for the whole population)?
+#' Notice that here we are comparing the most visited areas with the whole home range
+#' area of a single individual. 
+#' Are there differences?
 #' Why do these differences arise?
-#' 
-#' You need to recompute the Manly index for this individual using these measures.
-#' !!!!!!
  
 # ... S: Solution -----
 
-#----
-# compute core areas for individual a1
-kde1 <- hr_kde(a1, levels = 0.5)
-plot(kde1)
-kde1_pol <- hr_isopleths(kde1)
-# convert polygon toa SpatVector
-kde1_v <- vect(kde1_pol)
-# extract
-kde1_v_env <- terra::extract(land_cover, kde1_v)  
-head(kde1_v_env)
 
-#----
-# compute whole home range for individual a1
-kde1_whole <- hr_kde(a1, levels = 0.99)
-plot(kde1_whole)
-kde1_whole_pol <- hr_isopleths(kde1_whole)
-# convert polygon toa SpatVector
-kde1_whole_v <- vect(kde1_whole_pol)
-# extract
-kde1_whole_v_env <- terra::extract(land_cover, kde1_whole_v)  
-head(kde1_whole_v_env)
 
-#--- 
-# what we are comparing now
-plot(kde1_whole_v)
-plot(kde1_v, add = T)
 
-#---
-# compute manly's index
-# proportions
-prop_a1 <- as.data.frame(prop.table(table(kde1_v_env$land_cover)))
-prop_whole <- as.data.frame(prop.table(table(kde1_whole_v_env$land_cover)))
-# merge
-manly_a1 <- merge(prop_a1, prop_whole, by = c("Var1")) |> 
-  rename(code = Var1, prop_a1 = Freq.x, prop_all = Freq.y)
-# get land cover casses
-manly_a1 <- merge(manly_a1, lc_class, by = c("code"))
-# compute the Manly index
-manly_a1$index <- manly_a1$prop_a1/manly_a1$prop_all
-print(manly_a1)
-# compare
-manly_a1$index_kde50_all <- manly$index
-print(manly_a1)
+
+
+
+
+
+
+
+
 
 # ---------------
 
-
 #' # RSF one individual ------
-#' Test to create available random points from the track within a MCP.
+#' 
+#' We will start by comparing the conditions selected by one individual
+#' to the population level availability, what would be considered a second-order
+#' habitat selection according to Johnson (1980). 
+#' (where to I place my home range within the population?)
+
+#' We start creating available random points from the track within a MCP drawn.
+#' around its used (recorded) positions.
 #' using the random_points()-function and the track object `a1` as input
 r1 <- random_points(a1) 
 plot(r1)
 str(r1)
 
 #' We can also create available random points within a predefined home range
-#' For instance, we try with a kernel density estimation.
-kde1 <- hr_kde(a1, levels = c(0.95))
-plot(kde1)
+#' For instance, we try with a kernel density estimation for the whole population.
+mcp_all <- hr_mcp(dat2, levels = 1)
+plot(mcp_all)
 
 #' Create the random points again, now within the polygon of the kde.
 #' To add the observed locations to the data, we use the `presence` argument.
-r2 <- random_points(kde1, presence = a1)
+r2 <- random_points(mcp_all, presence = a1)
 plot(r2)
 
 #' When using the hr instead of the track object as the main input, we can 
 #' also add the number of random points using the parameter `n`.
 #' Here we create 10 random points for each observed location.
-r3 <- random_points(kde1, n=nrow(a1) * 10, presence = a1) 
+r3 <- random_points(mcp_all, n=nrow(a1) * 10, presence = a1) 
 plot(r3)
 
 # Note the difference in number of random points between r2 and r3.
@@ -305,17 +299,29 @@ r3_annotated <- r3 |>
   # here we extract the land cover classes
   extract_covariates(land_cover) |>
   # and then we change names of the land cover classes 
-  # !!!!!!!!!!!!!!!!!
   dplyr::mutate(landcover = factor(land_cover,
                                    levels = lc_class$code,
-                                   labels = lc_class$class) |> 
-                  relevel(ref = "pine forests")) |>
+                                   labels = lc_class$class)) |>
   # then the elevation layer is extracted and we change the name
   extract_covariates(dem) |>
   # clean up a bit and select only the columns needed 
   dplyr::select(case_, x_, y_, landcover, dem)
 
 r3_annotated
+
+#' In habitat/resource selection functions that involve categorical variables
+#' (such as the land cover here), we always compare the selection of the different 
+#' classes to a reference class, which is by default the first level of the 
+#' categorical variable (factor, in R terms).
+levels(r3_annotated$landcover)
+
+#' Currently, the reference level is "open wetlands". We will change it to 
+#' "spruce forests", which is also common and, according to the Manly index
+#' analyses, is used according to the availability (i.e., it is not selected
+#' not avoided).
+r3_annotated <- r3_annotated |> 
+  mutate(landcover = relevel(landcover, ref = "spruce forests"))
+levels(r3_annotated$landcover) # check
 
 #' Now we can fit a RSF. We will use `fit_rsf()` function from the `amt`-package, 
 #' which is just a wrapper around stats::glm with family = binomial(link = "logit").
@@ -326,16 +332,7 @@ r3_annotated |> fit_rsf(case_ ~ landcover + dem) |>
 # ... E: Exercise ---- 
 #' Try to interpret the results of the RSF above. How should the estimates of land 
 #' cover classes be interpreted?
-#' 
-#' Tip: When we have categorical variables among the environmental covariates,
-#' one of the categories is set as the reference (here the intercept in our fit), 
-#' and the selection coefficients are comparisons to the selection strength in
-#' this reference category.
-#' In these cases, it is generally useful to add a "-1" to the formula, so this
-#' reference level is explicitly stated. 
-rsf1 <- r3_annotated |> 
-  fit_rsf(case_ ~ landcover + dem - 1)
-summary(rsf1)
+
 
 
 
@@ -343,93 +340,17 @@ summary(rsf1)
 #----------------------
 
 
-# ... E: Exercise 1---- 
-#' We can also generate random points for another predefined area. This can 
-#' be useful if you want to estimate the habitat selection at second-order (Johnson 1980).
-#' Use the common MCP we produced above for all animals in the data set 
-#' and create random points within that area. Then fit a 2nd-order RSF.
-
-# ... S: Solution 1-----
-
-# availability area
-dat2 <- dat |> 
-  nest(data = -id) |> 
-  mutate(
-    data.resampled = map(data, ~ track_resample(.x, rate = hours(4), tolerance = minutes(10)))) |> 
-  dplyr::select(id, data.resampled)
-
-# unnest the data as we want to estimate a home range for all individual at the same time 
-dat2 <- dat2 |> 
-  unnest(cols = data.resampled)
-
-# make a common MCP for all individuals this will be used as the availability area
-# skip definition of the id and you'll get a common MCP
-mcp_all <- hr_mcp(dat2, levels=1)
-
-# create random points within the common mcp
-r_sec <- random_points(mcp_all, n=nrow(a1)*10, presence = a1) 
-plot(r_sec)
-r_sec
-
-# annotate the data
-r_sec_annotated <- r_sec |> 
-  # here we extract the land cover classes
-  extract_covariates(land_cover) |>
-  # remove water
-  filter(land_cover != 61) |> 
-  # and then we change names of the land cover classes 
-  dplyr::mutate(landcover = factor(land_cover,
-                                   levels = lc_class$code,
-                                   labels = lc_class$class) |> 
-                  relevel(ref = "pine forests") |> 
-                  droplevels()) |>
-  # then the elevation layer is extracted and we change the name
-  extract_covariates(dem) |>  
-  # clean up a bit and select only the columns needed 
-  dplyr::select(case_, x_, y_, landcover, dem)
-
-r_sec_annotated$landcover
-
-manly_classes
-
-rsf2 <- r_sec_annotated |> fit_rsf(case_ ~ landcover + dem)
-summary(rsf2)
-
-# if the availability of pine forests and open wetlands was the same,
-# the relative selection of open wetlands would be
-exp(coef(rsf2)[2])*manly_classes$prop_all[manly_classes$code == "open wetlands"]/manly_classes$prop_all[manly_classes$code == "pine forests"]
-
 # ... E: Exercise 2---- 
-#' Use the same animal as above in the exercise "RSF one individual" 
-#' and fit and RSF at second-order, i.e. placement of home range 
-#' within the available area for all individuals. 
+#' We can also generate random points for another predefined area. This can 
+#' be useful if you want to estimate the habitat selection at third-order (Johnson 1980),
+#' i.e. we want to understand what are the preferred areas within the indivdiual's
+#' home range.
 #' 
-#' Compare the estimates for the second-order and third-order model, 
-#' is there any difference? Why?
-
+#' Compute a 99% KDE for this individual and compare the used location with random 
+#' points spread in the 99% KDE area. Then fit a 3nd-order RSF.
+#' Is there any difference between this and the 2nd-order results?
 
 # ... S: Solution 2-----
-
-
-#-------
-
-# used and available
-used_ava <- dplyr::bind_rows(used, ava)
-
-used_ava_sf <- used_ava %>% 
-  sf::st_as_sf(coords = c("x_", "y_")) %>% 
-  terra::vect()
-
-used_ava %>% 
-  sf::st_as_sf(coords = c("x_", "y_")) %>% 
-  ggplot() +
-  geom_sf(aes(colour = case_))
-
-background_data <- terra::extract(maps, used_ava_sf) %>% 
-  as.data.frame()
-
-
-
 
 
 
