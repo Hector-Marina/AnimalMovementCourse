@@ -234,7 +234,7 @@ hr_overlap(hr1, hr2)
 mcps <- dat |> nest(data = -id) |> 
   mutate(mcp = map(data, ~ hr_mcp(.x, levels = c(0.9)))) 
 
-mcps_pols <- map(mcps$mcp, ~ .$mcp) |> 
+mcps_pols <- map(mcps$mcp, ~ hr_isopleths(.)) |> 
   dplyr::bind_rows() |> 
   dplyr::bind_cols(mcps[,1])
 

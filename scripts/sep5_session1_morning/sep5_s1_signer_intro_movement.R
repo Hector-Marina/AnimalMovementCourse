@@ -140,7 +140,9 @@ class(animal1)
 
 
 # ... S: Solution -----
-animal1 |> mutate(month = month(t_)) 
+
+
+
 
 
 # ... Changing the CRS ----

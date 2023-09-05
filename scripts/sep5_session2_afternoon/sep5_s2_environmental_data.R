@@ -123,10 +123,10 @@ a1_env
 #' hint: you can use `geom_bar()` from `ggplot2` package. 
 
 # ... S: Solution -----
-a1_env |> 
-  ggplot(aes(x = class)) +
-  geom_bar() +
-  coord_flip()
+
+
+
+
 
 #------------------
 
@@ -137,11 +137,11 @@ a1_env |>
 #' hint you can make a `geom_histogram` from `ggplot2` package.
 
 # ... S: Solution -----
-a1_env2 <- extract_covariates(a1, dem, where = "start")
 
-a1_env2 |> 
-  ggplot(aes(x = dem)) +
-  geom_histogram()
+
+
+
+
 
 #------------------
 #' Step lengths vs environmental covariates
