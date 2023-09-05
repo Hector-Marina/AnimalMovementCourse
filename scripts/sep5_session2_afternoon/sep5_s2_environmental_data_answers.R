@@ -67,6 +67,8 @@ lc_class
 #' Now we can reclass the land cover codes, and plot it in a more meaningful way:
 land_cover <- as.factor(land_cover)
 levels(land_cover) <- lc_class
+# if you get an error, maybe you need this:
+# levels(land_cover)[[1]] <- data.frame(lc_class)
 
 plot(land_cover, main = "Land cover")
  
