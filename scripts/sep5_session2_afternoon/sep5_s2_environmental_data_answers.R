@@ -206,10 +206,12 @@ dat2_env |>
 
 # ... S: Solution -----
 
-
-
-
-
+# sl
+dat2_env |> 
+  ggplot(aes(x = dem, y = sl_)) +
+  geom_point() +
+  ylim(0, 5000) +
+  geom_smooth()
 
 
 # ... E: Exercise ---- 
@@ -221,11 +223,23 @@ dat2_env |>
 
 # ... S: Solution -----
 
+# time of the day
+time_of_day(dat2_env, where = "start")
+# or
+time_of_day(dat2_env, where = "start") |> 
+  pull(tod_start_)
 
+dat2_env %>%
+  time_of_day(where = "start") |> 
+  ggplot(aes(x = class, fill = tod_start_)) +
+  geom_bar(position = "fill") +
+  coord_flip()
 
-
-
-
+# There are NA's for some reason
+# We need to find out...
+time_of_day(dat2_env, where = "start") |> 
+  slice(270:350) |> 
+  View()
 
 
 # ... E: Exercise ---- 
@@ -234,4 +248,10 @@ dat2_env |>
 
 
 # ... S: Solution -----
+dat2_env %>%
+  time_of_day(where = "start") |> 
+  ggplot(aes(x = class, y = sl_, fill = tod_start_)) +
+  geom_boxplot() +
+  ylim(0, 5000) +
+  coord_flip()
 
