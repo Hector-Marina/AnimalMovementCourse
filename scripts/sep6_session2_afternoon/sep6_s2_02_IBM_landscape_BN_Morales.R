@@ -1,35 +1,20 @@
 #' ---
 #' title: An introduction to movement ecology individual based models
 #' author: The following pieces of codes were kindly provided by Juan Morales
-#' date: Movement Ecology Course, UFJF, Juiz de Fora/MG, Brazil, December 2018
-#' 
-#' output:
-#' pdf_document:
-#'   toc: true
-#'   toc_depth: 2
-#'   number_sections: true
+#' date: Animal Movement Course, SLU-Sweden, September 2023
 #' ---
 
-# --------------- label=print_options, warning=FALSE, message=FALSE, echo=FALSE
-
-# Load packages
-if(!require(install.load)) install.packages('install.load'); library(install.load)
-
-# For rendering the document
-install.load::install_load('ezknitr', 'knitr', 'caTools', 'bitops')
-
-# Print options
-options(width = 165)
-opts_chunk$set(error = FALSE, message = FALSE, warning = FALSE, cache = FALSE, echo = TRUE, results = TRUE)
-
-# --------------- label=load_packages
+# Load packages ----
+library(KernSmooth)
+library(MASS)
+library(lattice)
+library(circular)
+#------------------
 
 ####################################################################
-# first we'll simulate a landscape with two habitat types
-# The function below builds a patchy landscape
-# (modified from Matthiopoulos et al. 2015)
-
-install.load::install_load('KernSmooth', 'MASS', 'lattice', 'circular')
+#' first we'll simulate a landscape with two habitat types
+#' The function below builds a patchy landscape
+#' (modified from Matthiopoulos et al. 2015)
 
 environ <- function(d,x,mx,bw,sl){
   ar<-array(0, dim=c(d,d))
@@ -43,30 +28,43 @@ environ <- function(d,x,mx,bw,sl){
   return(sarx$fhat)
 }
 
+# set landscape parameters
 set.seed(1234)
 d <- 400   # landscape size
-x <- 400   # number of seeds for patches
+x <- 400   # number of seeds for patches (patch centers)
 mx <- 1    # scaling of bumps
 bw <- rpois(x, 10)+1   # bandwith of patches
 sl <- 0.5           # slope
 
+# simulate environment
 E <- environ(d,x,mx,bw,sl) # bumpy landscape...
 mapPalette <- colorRampPalette(c("gold", "darkgreen"))
+
+# plot
 levelplot(E,useRaster=T, col.regions=mapPalette(100), xlab="x", ylab="y")
 
+# plot with terra
 terra::plot(terra::flip(terra::rast(E), "vertical"))
 
 
 #-------------------------------------------------------------------
 # simulate a movement track
-b0 <- log(10)
-b1 <- -3
-s_shape <- 1
+
+#' We now simulate a movement track in this landscape
+#' The animal movement randomly but the step lengths are higher when close
+#' (or far, depending on the signal of the parameter b1) of the green patches.
+#' 
+#' 
+b0 <- log(10) # intercept (like the intercept of a RSF)
+b1 <- 0 # how much the abundance of green resources affect the step length
+# (positive = walk long distances in the green areas; 
+# negative = walk short distances in the green areas)
+s_shape <- 1 
 mu <- circular(0)
 rho <- 0
 
-nsteps <- 100
-nind <- 5
+nsteps <- 500
+nind <- 1
 
 # simulate steps and turns
 steps <- matrix(NA,nsteps,nind)
@@ -101,3 +99,6 @@ for(i in 1:nind){
 # plot trajectories
 image(1:d,1:d, E, col=mapPalette(100), xlab="x", ylab="y")
 matlines(X,Y,type="l",pch=16, col=rainbow(nind),lwd=2)
+
+#' QUESTION: what happens when you change the b1 parameter? Try it with negative,
+#' zero, and positive values, and also with small and large values.

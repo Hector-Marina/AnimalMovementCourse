@@ -287,24 +287,37 @@ points(x[1],y[1], col="red", cex=2, pch=16)
 #' Try this and change the attraction coefficient beta to see what changes.
 
 
+# ... S: Solution -----
+nsteps <- 500
+xh <- 0
+yh <- 0
 
+beta <- 0.5 # we can change this here and check what changes
 
+x <- numeric(nsteps)
+y <- numeric(nsteps) 
+h <- numeric(nsteps)
+steps <- numeric(nsteps)
 
+h[1] <- runif(1,1,2*pi)
+x[1] <- rnorm(1,0,1)
+y[1] <- rnorm(1,0,1)
 
+for(t in 2:nsteps){  
+  adj <- xh - x[t-1]
+  op  <- yh - y[t-1]
+  r   <- sqrt(adj^2 + op^2)
+  ya <- sin(h[t-1]) + beta*(op/r)
+  xa <- cos(h[t-1]) + beta*(adj/r)    
+  m_t <- atan2(ya,xa)
+  h[t] <- rwrappedcauchy(1, mu=circular(m_t), rho=rho)
+  steps[t-1] <- rweibull(1, scale=scale, shape=shape)
+  x[t] <- x[t-1] + cos(h[t])*steps[t-1]
+  y[t] <- y[t-1] + sin(h[t])*steps[t-1]
+}            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+plot(x,y, type="l",lwd=2, xlim=c(-30,30),ylim=c(-20,20), asp=1)     
+points(x[1],y[1], col="red", cex=2, pch=16)
 
 #-------------------------------------------------------------------
 # simulate several individuals
