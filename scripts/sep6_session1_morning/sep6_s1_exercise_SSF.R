@@ -165,41 +165,6 @@ m1 <- ssf.dat |>
 summary(m1)
 
 
-# Notice that are errors. This is most probably because there are very few random 
-# or used positions in the classes "anthropogenic areas", "tundra/rocks", 
-# and "heath".
-# we will then remove those classes to perform the model fit.
-
-# Everything at once
-# ssf.dat <- dat1 |> steps() |> 
-#   random_steps() |> 
-#   extract_covariates(covars) |> 
-#   extract_covariates(elev) |> # we can add as many different raster as we want
-#   mutate(log_sl_ = log(sl_), 
-#          cos_ta_ = cos(ta_)) |> 
-#   filter(!(land_cover %in% c("tundra/rocks", "heath", "anthropogenic areas"))) |> 
-#   mutate(land_cover = relevel(land_cover, ref = "pine forests") |> droplevels())
-
-# the problem now is that we might have some strata with less than 10 random
-# step, and even some with no used step. So we can filter these strata out
-# (it is the easiest way for now).
-
-# ssf.dat <- ssf.dat |> 
-#   nest(data = -step_id_) |> 
-#   mutate(strata_length = map_int(data, ~ nrow(.))) |> 
-#   filter(strata_length == 11) |> 
-#   select(-strata_length) |> 
-#   unnest(data)
-
-# now we can re-fit the data
-# m1 <- ssf.dat |> 
-#   fit_issf(case_ ~ land_cover + elevation +
-#              strata(step_id_), model = TRUE)
-# 
-# # we re-interpret the model
-# 
-# summary(m1)
-
 # ... Calculating Relative Selection Strength (RSS) for Two Locations -----
 #
 # Calculating the relative use of location $s_1$ versus location $s_2$ is fairly
@@ -310,4 +275,42 @@ summary(m2)
 
 # For a discussion of the parameter interpretation see here: https://conservancy.umn.edu/bitstream/handle/11299/218272/AppB_SSF_examples.html
 
-  
+#-------
+
+# If you use all land cover classes instead of a binary forest/non-forest variable,
+# there might be errors. In this case, you can explore the code below.
+#
+# Notice that are errors. This is most probably because there are very few random 
+# or used positions in the classes "anthropogenic areas", "tundra/rocks", 
+# and "heath".
+# we will then remove those classes to perform the model fit.
+
+# Everything at once
+# ssf.dat <- dat1 |> steps() |> 
+#   random_steps() |> 
+#   extract_covariates(covars) |> 
+#   extract_covariates(elev) |> # we can add as many different raster as we want
+#   mutate(log_sl_ = log(sl_), 
+#          cos_ta_ = cos(ta_)) |> 
+#   filter(!(land_cover %in% c("tundra/rocks", "heath", "anthropogenic areas"))) |> 
+#   mutate(land_cover = relevel(land_cover, ref = "pine forests") |> droplevels())
+
+# the problem now is that we might have some strata with less than 10 random
+# step, and even some with no used step. So we can filter these strata out
+# (it is the easiest way for now).
+
+# ssf.dat <- ssf.dat |> 
+#   nest(data = -step_id_) |> 
+#   mutate(strata_length = map_int(data, ~ nrow(.))) |> 
+#   filter(strata_length == 11) |> 
+#   select(-strata_length) |> 
+#   unnest(data)
+
+# now we can re-fit the data
+# m1 <- ssf.dat |> 
+#   fit_issf(case_ ~ land_cover + elevation +
+#              strata(step_id_), model = TRUE)
+# 
+# # we re-interpret the model
+# 
+# summary(m1)

@@ -1,22 +1,22 @@
-﻿2;open wetlands
-3;arable lands
-41;other open lands
-42;other open lands
-51;anthropogenic areas
-52;anthropogenic areas
-53;road/railway
-61;water
-111;pine forests
-112;spruce forests
-113;mixed coniferous
-114;deciduous forests
-115;mixed forests
-118;clear cuts
-121;forested wetlands
-122;forested wetlands
-123;forested wetlands
-124;forested wetlands
-125;forested wetlands
-128;clear cuts
-201;tundra/rocks
-202;heath
+﻿2;open wetlands;open
+3;arable lands;open
+41;other open lands;open
+42;other open lands;open
+51;anthropogenic areas;open
+52;anthropogenic areas;open
+53;road/railway;open
+61;water;open
+111;pine forests;forest
+112;spruce forests;forest
+113;mixed coniferous;forest
+114;deciduous forests;forest
+115;mixed forests;forest
+118;clear cuts;open
+121;forested wetlands;forest
+122;forested wetlands;forest
+123;forested wetlands;forest
+124;forested wetlands;forest
+125;forested wetlands;forest
+128;clear cuts;open
+201;tundra/rocks;open
+202;heath;open
