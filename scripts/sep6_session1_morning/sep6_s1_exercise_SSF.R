@@ -11,11 +11,29 @@ library(patchwork)
 library(terra)
 
 # Load data
-dat <- read_rds("data/dat_track3035.rds")
+dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
 dat1 <- filter(dat, id == "FIT_421956")
 
-# TODO
-covars <- rast("")
+# Read covariates
+covars <- rast("data/raw/outdoor/nmd10_ungeneralized_stakke.tif")
+# read classes for the land cover map
+lc_class <- read_csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv", 
+                      col_names = F) |> 
+  rename(code = 1, class = 2, land_cover = 3) |> 
+  dplyr::arrange(code)
+
+# transform into factor
+# covars <- as.factor(covars)
+levels(covars) <- lc_class[c(1,3)]
+# if you get an error, maybe you need this:
+# levels(land_cover)[[1]] <- data.frame(lc_class)
+
+elev <- rast("data/raw/outdoor/DEM10_stakke.tif")
+names(elev) <- "elevation"
+
+# if different covariates have exactly the same extent and resolution, they can
+# be read together. As they differ slightly here, we need to create another object
+# for the elevation.
 
 # Integrated step-selection analyses are implemented using the following steps:
 
@@ -61,6 +79,7 @@ dat1 |> steps() |>
 dat1 |> steps() |> 
   random_steps() |> 
   extract_covariates(covars) |> 
+  extract_covariates(elev) |> # we can add as many different raster as we want
   mutate(log_sl_ = log(sl_), 
          cos_ta_ = cos(ta_))
 
@@ -68,8 +87,10 @@ dat1 |> steps() |>
 ssf.dat <- dat1 |> steps() |> 
   random_steps() |> 
   extract_covariates(covars) |> 
+  extract_covariates(elev) |> # we can add as many different raster as we want
   mutate(log_sl_ = log(sl_), 
-         cos_ta_ = cos(ta_))
+         cos_ta_ = cos(ta_),
+         forest = c(FALSE, TRUE)[land_cover])
 
 ssf.dat
 
@@ -136,7 +157,6 @@ m1 <- ssf.dat |>
   fit_issf(case_ ~ forest + elevation +
              strata(step_id_), model = TRUE)
 
-
 # Interpreting Habitat-Selection Parameters ------
 #
 # We begin by exploring the coefficients in the fitted model using the
@@ -144,6 +164,41 @@ m1 <- ssf.dat |>
 
 summary(m1)
 
+
+# Notice that are errors. This is most probably because there are very few random 
+# or used positions in the classes "anthropogenic areas", "tundra/rocks", 
+# and "heath".
+# we will then remove those classes to perform the model fit.
+
+# Everything at once
+# ssf.dat <- dat1 |> steps() |> 
+#   random_steps() |> 
+#   extract_covariates(covars) |> 
+#   extract_covariates(elev) |> # we can add as many different raster as we want
+#   mutate(log_sl_ = log(sl_), 
+#          cos_ta_ = cos(ta_)) |> 
+#   filter(!(land_cover %in% c("tundra/rocks", "heath", "anthropogenic areas"))) |> 
+#   mutate(land_cover = relevel(land_cover, ref = "pine forests") |> droplevels())
+
+# the problem now is that we might have some strata with less than 10 random
+# step, and even some with no used step. So we can filter these strata out
+# (it is the easiest way for now).
+
+# ssf.dat <- ssf.dat |> 
+#   nest(data = -step_id_) |> 
+#   mutate(strata_length = map_int(data, ~ nrow(.))) |> 
+#   filter(strata_length == 11) |> 
+#   select(-strata_length) |> 
+#   unnest(data)
+
+# now we can re-fit the data
+# m1 <- ssf.dat |> 
+#   fit_issf(case_ ~ land_cover + elevation +
+#              strata(step_id_), model = TRUE)
+# 
+# # we re-interpret the model
+# 
+# summary(m1)
 
 # ... Calculating Relative Selection Strength (RSS) for Two Locations -----
 #
@@ -172,12 +227,12 @@ summary(m1)
 # Let us start with creating the two positions.
 s1 <- data.frame(
   elevation = 100,
-  forest = TRUE)
+  land_cover = TRUE)
  
 # data.frame for s2; note the value for forest is different.
 s2 <- data.frame(
   elevation = 100,
-  forest = FALSE)
+  land_cover = FALSE)
 
 # Now that we have specified each location as a `data.frame`, we can pass them
 # along to `log_rss()` for the calculation. The function will return an object
