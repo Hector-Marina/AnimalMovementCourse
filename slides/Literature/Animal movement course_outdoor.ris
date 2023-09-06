@@ -1,0 +1,809 @@
+TY  - JOUR
+TI  - Evaluating resource selection functions
+AU  - Boyce, M. S.
+AU  - Vernier, P. R.
+AU  - Nielsen, S. E.
+AU  - Schmiegelow, F. K. A.
+T2  - Ecological Modelling
+AB  - A resource selection function (RSF) is any model that yields values proportional to the probability of use of a resource unit. RSF models often are fitted using generalized linear models (GLMs) although a variety of statistical models might be used. Information criteria such as the Akaike Information Criteria (AIC) or Bayesian Information Criteria (BIC) are tools that can be useful for selecting a model from a set of biologically plausible candidates. Statistical inference procedures, such as the likelihood-ratio test, can be used to assess whether models deviate from random null models. But for most applications of RSF models, usefulness is evaluated by how well the model predicts the location of organisms on a landscape. Predictions from RSF models constructed using presence/absence (used/ unused) data can be evaluated using procedures developed for logistic regression, such as confusion matrices, Kappa statistics, and Receiver Operating Characteristic (ROC) curves. However, RSF models estimated from presence/ available data create unique problems for evaluating model predictions. For presence/available models we propose a form of k-fold cross validation for evaluating prediction success. This involves calculating the correlation between RSF ranks and area-adjusted frequencies for a withheld sub-sample of data. A similar approach can be applied to evaluate predictive success for out-of-sample data. Not all RSF models are robust for application in different times or different places due to ecological and behavioral variation of the target organisms. (C) 2002 Elsevier Science B.V. All rights reserved.
+DA  - 2002/11/30/
+PY  - 2002
+DO  - 10.1016/S0304-3800(02)00200-4
+VL  - 157
+SP  - 281
+EP  - 300
+J2  - Ecol Model Ecol Model
+UR  - https://doi.org/10.1016/S0304-3800(02)00200-4
+AN  - ISI:000179241300013
+N1  - The following values have no corresponding Zotero field:<br/>Author Address: Boyce, M. S. Univ Alberta, Dept Sci Biol, Edmonton, AB T6G 2E9, Canada Univ Alberta, Dept Sci Biol, Edmonton, AB T6G 2E9, Canada Univ British Columbia, Dept Forest Sci, Vancouver, BC V6T 1Z4, Canada Univ Alberta, Dept Renewable Resources, Edmonton, AB T6G 2H1, Canada<br/>Label: Elsevier Science Bv<br/>
+N1  - <p>Times Cited: 17<br/>Article<br/>English<br/>Cited References Count: 65<br/>615jd</p>
+KW  - accuracy
+KW  - ecology
+KW  - forest
+KW  - habitat selection
+KW  - independence
+KW  - inference
+KW  - logistic regression
+KW  - model selection
+KW  - models
+KW  - movements
+KW  - prediction
+KW  - prevalence
+KW  - regression
+KW  - resource selection functions
+KW  - responses
+KW  - rsf
+KW  - validation
+ER  - 
+
+TY  - JOUR
+TI  - A multiscale behavioral approach to understanding the movements of woodland caribou
+AU  - Johnson, C. J.
+AU  - Parker, K. L.
+AU  - Heard, D. C.
+AU  - Gillingham, M. P.
+T2  - Ecological Applications
+AB  - We assessed the response of woodland caribou (Rang fer tarandus caribou) to land-cover type, predation risk, energetic costs of movement, and patch configuration at multiple spatial scales. We applied a nonlinear model to frequent locations collected with Global Positioning System (GPS) collars to identify discontinuities in the scales of movement by caribou found in forested and alpine (above tree line) habitats. We differentiated intra- from interpatch movements and identified collections of patches (multiple-patch scale) where caribou concentrated intrapatch movements. On average, intra- and interpatch movements were 450.7 and 1268.8 m, respectively, and multiple-patch movements occurred over an area of 182 ha. Intrapatch movements were highly correlated, indicative of a strong relationship between behavior and place. Caribou in the forest selected patches of Pine terrace, whereas caribou in the alpine selected patches of Alpine-little vegetative cover. Predation risk was not a factor influencing movements of caribou at the intrapatch scale. Selection of cover types was more variable during interpatch movements. At that scale, caribou selected patches of Pine terrace, Lakes/rivers, Alpine-little vegetative cover, and Alpine-grass. The routes selected by caribou had lower energetic costs relative to surrounding terrain, and during some winters, caribou were subjected to higher levels of predation risk during those movements. At the multiple-patch scale, selection was more specific and encompassed patches of Alpine-little vegetative cover, Alpine-grass, and Pine terrace. Predation risk was relatively unimportant at the multi-patch scale, but animals that moved from forested to alpine habitats reduced their relative risk of predation. Patch configuration was a poor predictor of those areas where caribou concentrated intrapatch movements. There was some evidence of caribou selecting patches of Pine terrace within a matrix of Wetlands and Pine-black spruce/black spruce patches. Caribou in the alpine avoided patches of Alpine-little vegetative cover adjacent to forest types. Our results indicate that forest managers should maintain widely distributed patches of Pine terrace and implement silvicultural regimes that do not stimulate predator populations across areas used for interpatch movements.
+DA  - 2002/12//undefined
+PY  - 2002
+VL  - 12
+SP  - 1840
+EP  - 1860
+UR  - ://000179986700020
+AN  - ISI:000179986700020
+N1  - The following values have no corresponding Zotero field:<br/>Author Address: Univ No British Columbia, Fac Nat Resources & Environm Studies, Prince George, BC V2N 4Z9, Canada. British Colombia Minist Environm Lands & Pks, Prince George, BC V2L 3H9, Canada. Johnson, CJ, Univ Alberta, Dept Biol Sci, 2907 Biol Sci Ctr, Edmonton, AB T6G 2E9, Canada<br/>
+KW  - caribou, GPS, habitat patch, heterogeneity, movement patterns, multiscale analysis, patch configuration, predation risk, Rangifer tarandus caribou, selection
+KW  - energy expenditures
+KW  - habitat selection
+KW  - hierarchical analysis
+KW  - landscape structure
+KW  - northeastern alberta
+KW  - rangifer-tarandus-caribou
+KW  - southeastern british-columbia
+KW  - spatial scales
+KW  - variable importance
+KW  - white-tailed deer
+ER  - 
+
+TY  - JOUR
+TI  - The comparison of usage and availability measurements for evaluating resource preference
+AU  - Johnson, Douglas H
+T2  - Ecology
+DA  - 1980///
+PY  - 1980
+VL  - 6
+SP  - 65
+EP  - 71
+KW  - availability
+KW  - food habits
+KW  - habitat selection
+KW  - preference
+KW  - resource utilization
+KW  - selection
+KW  - usage
+ER  - 
+
+TY  - JOUR
+TI  - Relating resources to a probabilistic measure of space use: Forest fragments and Steller's Jays
+AU  - Marzluff, J. M.
+AU  - Millspaugh, J. J.
+AU  - Hurvitz, P.
+AU  - Handcock, M. S.
+T2  - Ecology
+AB  - Many analytical techniques that assess resource selection focus on individual relocation points as the sample unit and classify resources as either used or available. Commonly, the relative use of each resource is quantified as the number of observations in each resource class or the proportional occurrence of a resource within a home range. We believe that a more accurate estimate can be summarized by a utilization distribution (UD). We present an analytical approach that explicitly incorporates a probabilistic measure of use, as defined by the UD. We used animal relocation points and fixed-kernel techniques to determine a UD within a home range. We related this probabilistic measure of use to,categorical and continuous resource variables using multiple regression. Regression errors accounted for spatial autocorrelation so that the significance of regression coefficients could be appraised for each animal and averaged across animals. This allowed us to quantify the individualistic nature of resource selection and test for consistency in use of resources by a population. Sample sizes in population assessments correctly reflected the individual animal as the experimental unit. We used this technique in a geographic information system setting to examine the importance of local-scale (forest cover) and landscape-scale (degree of fragmentation, proximity to edges and human use areas) attributes to breeding season habitat selection by 25 radio-tagged Steller's Jays (Cyanocitta stelleri) in western Washington State, USA. Individual jays varied significantly in habitat use, but most (20) concentrated their use in areas with many vegetation patches or in areas with extensive edge between forest and nonforested land cover. This confirmed our prediction that jays prefer fragmented habitat and forest edges and helped to explain why jays are most abundant in fragmented landscapes. However, we refined our, understanding of why they used such habitats by demonstrating that landscape attributes. affected use of local habitat features:high-contrast edges were used most if they were associated with small human settlements and campgrounds. Use of patchy and edgy areas within home ranges may be reinforced by natural selection because jays that inhabited areas with complex-shaped patches and concentrated their activity in such areas were most likely to fledge young. Concentration of use along forest-human land use interfaces may explain the greater risk of nest predation to other birds in such settings.
+DA  - 2004/05//undefined
+PY  - 2004
+VL  - 85
+SP  - 1411
+EP  - 1427
+UR  - ://000221433300022
+AN  - ISI:000221433300022
+KW  - autocorrelation
+KW  - availability
+KW  - Cyanocitta stelleri
+KW  - design
+KW  - eagles
+KW  - ecology
+KW  - edge effect
+KW  - fragmentation
+KW  - geographic information-system
+KW  - habitat selection
+KW  - habitat use
+KW  - home-range estimators
+KW  - kernel
+KW  - nest predation
+KW  - resource
+KW  - resource selection
+KW  - selection
+KW  - spatial autocorrelation
+KW  - statistical
+KW  - Steller's Jay
+KW  - techniques
+KW  - utilization distribution
+KW  - utilization function
+ER  - 
+
+TY  - JOUR
+TI  - Large herbivore foraging and ecological hierarchies
+AU  - Senft, R L
+AU  - Coughenour, M B
+AU  - Bailey, D W
+AU  - Rittenhouse, L R
+AU  - Sala, O E
+AU  - Swift, D M
+T2  - BioScience
+DA  - 1987/12//
+PY  - 1987
+VL  - 37
+SP  - 789
+EP  - 799
+KW  - foraging theory
+KW  - landscape ecology
+ER  - 
+
+TY  - JOUR
+TI  - Summer habitat preferences of GPS-collared reindeer Rangifer tarandus tarandus
+AU  - Skarin, A.
+AU  - Danell, O.
+AU  - Bergstrom, R.
+AU  - Moen, J.
+T2  - Wildlife Biology
+AB  - Reindeer Rangifer tarandus tarandus husbandry In Sweden commonly uses the Scandinavian mountain chain as grazing area during the snow-free season and the coniferous forests in the east during winter. Current knowledge of habitat use by reindeer is primarily based on traditional or local knowledge, or on investigations carried out on wild reindeer and caribou in other parts of the world. We identified spatial and temporal habitat use of free-ranging semi-domesticated reindeer by following 48 GPS-equipped reindeer in three summer ranges in the Swedish reindeer herding area. The GPS equipment registered positions every hour or every second hour, during two snow-free seasons. The GPS-collared reindeer were randomly chosen from herds with several thousand animals. Estimated home-range utilisation distributions were used to fit resource utilisation functions (RUFs) including various topographical features, vegetation types, and the vicinity to water and hiking trails. The GPS-equipped reindeer used different parts of the range throughout the snow-free season. Preferred vegetation types were consistently meadows, grass heaths, and other heaths. Avoided vegetation types were all types of forests, sparsely vegetated areas, and bare rocks. The reindeer were seemingly indifferent to hiking trails within their home ranges, which, however, usually coincided with preferred vegetation types, but they avoided areas with houses and holiday huts during early summer. Later in the season, the reindeer preferred higher elevated areas where human constructions were sparse. The home ranges of the GPS-equipped reindeer overlapped considerably during early parts of the season, indicating a dense use of the range by the entire herds. Crowding within the herds appeared to make individual reindeer select non-optimal habitats. However, in our study, we found a nonsignificant tendency of less predictable individual home ranges when there were large range overlaps. Vegetation types, direction of slopes, time within the season and the possibilities of avoiding insect harassment appear to be key factors for predicting valuable reindeer habitats in novel areas in a land management context.
+DA  - 2008/03//undefined
+PY  - 2008
+VL  - 14
+SP  - 1
+EP  - 15
+J2  - Wildlife Biol.
+UR  - ://000255921800001
+AN  - ISI:000255921800001
+N1  - The following values have no corresponding Zotero field:<br/>Author Address: [Skarin, Anna; Danell, Oje] Swedish Univ Agr Sci, Reindeer Husbandry Unit, SE-75007 Uppsala, Sweden. [Bergstrom, Roger] Forestry Res Inst Sweden, SE-75183 Uppsala, Sweden. [Moen, Jon] Umea Univ, Dept Ecol & Environm Sci, SE-90187 Umea, Sweden. Skarin, A, Swedish Univ Agr Sci, Reindeer Husbandry Unit, POB 7023, SE-75007 Uppsala, Sweden. anna.skarin@rene.slu.se oje.danell@rene.slu.se roger.bergstrom@skogforsk.se<br/>
+N1  - <p>Times Cited: 1<br/>Cited Reference Count: 55<br/>English<br/>Article<br/>WILDLIFE BIOL<br/>301US</p>
+KW  - Alaska
+KW  - avoidance
+KW  - behavior
+KW  - caribou
+KW  - fixed-kernel estimation
+KW  - GPS-collar
+KW  - herd behaviour
+KW  - home-range
+KW  - large herbivore
+KW  - mountain
+KW  - multiple regressions
+KW  - position
+KW  - range use
+KW  - resource selection functions
+KW  - utilisation distribution
+KW  - wild reindeer
+KW  - woodland caribou
+ER  - 
+
+TY  - JOUR
+TI  - Do human activity and infrastructure disturb domesticated reindeer? The need for the reindeer’s perspective
+AU  - Skarin, Anna
+AU  - Åhman, Birgitta
+T2  - Polar Biology
+DA  - 2014/04/11/
+PY  - 2014
+DO  - 10.1007/s00300-014-1499-5
+VL  - 37
+SP  - 1041
+EP  - 1054
+J2  - Polar Biol
+LA  - English
+SN  - 0722-4060
+UR  - http://dx.doi.org/10.1007/s00300-014-1499-5
+N1  - The following values have no corresponding Zotero field:<br/>PB  - Springer Berlin Heidelberg<br/>
+KW  - disturbance
+KW  - domestication
+KW  - Rangifer
+KW  - Regional scale
+KW  - Zone of avoidance
+ER  - 
+
+TY  - JOUR
+TI  - Wolves influence elk movements: Behavior shapes a trophic cascade in Yellowstone National Park
+AU  - Fortin, D
+AU  - Beyer, HL
+AU  - Boyce, MS
+AU  - Smith, DW
+AU  - Duchesne, T
+AU  - Mao, JS
+T2  - ECOLOGY
+AB  - A trophic cascade recently has been reported among wolves, elk, and aspen on the northern winter range of Yellowstone National Park, Wyoming, USA, but the mechanisms of indirect interactions within this food chain have yet to be established. We investigated whether the observed trophic cascade might have a behavioral basis by exploring environmental factors influencing the movements of 13 female elk equipped with GPS radio collars. We developed a simple statistical approach that can unveil the concurrent influence of several environmental features on animal movements. Paths of elk traveling on their winter range were broken clown into steps, which correspond to the straight-line segment between successive locations at 5-hour intervals. Each observed step was paired with 200 random steps having the same starting point, but differing in length and/or direction. Comparisons between the characteristics of observed and random steps using conditional logistic regression were used to model environmental features influencing movement patterns. We found that elk movements were influenced by multiple factors, such as the distance from roads, the presence of a steep slope along the step, and the cover type in which they ended. The influence of cover type on elk movements depended on the spatial distribution of wolves across the northern winter range of the park. In low wolf-use areas, the relative preference for end point locations of steps followed: aspen stands > open areas > conifer forests. As the risks of wolf encounter increased, the preference of elk f r aspen stands gradually decreased, and selection became strongest for steps ending in conifer forests in high wolf-use areas. Our study clarifies the behavioral mechanisms involved in the trophic cascade of Yellowstone's wolf-elk-aspen system: elk respond to wolves on their winter range by a shift in habitat selection, which leads to local reductions in the use of aspen by elk.
+DA  - 2005/05//
+PY  - 2005
+DO  - 10.1890/04-0953
+VL  - 86
+IS  - 5
+SP  - 1320
+EP  - 1330
+SN  - 0012-9658
+ER  - 
+
+TY  - JOUR
+TI  - Modeling interdependent animal movement in continuous time
+AU  - Niu, M.
+AU  - Blackwell, P. G.
+AU  - Skarin, A.
+T2  - Biometrics
+DA  - 2016///
+PY  - 2016
+DO  - 10.1111/biom.12454
+KW  - animal movement
+KW  - Bayesian inference
+KW  - Multivariate Ornstein Uhlenbeck process
+KW  - Ornstein Uhlenbeck bridge
+KW  - Stochastic differential equation
+ER  - 
+
+TY  - JOUR
+TI  - A movement ecology paradigm for unifying organismal movement research
+AU  - Nathan, R.
+AU  - Getz, W. M.
+AU  - Revilla, E.
+AU  - Holyoak, M.
+AU  - Kadmon, R.
+AU  - Saltz, D.
+AU  - Smouse, P. E.
+T2  - Proc Natl Acad Sci U S A
+DA  - 2008///
+PY  - 2008
+DO  - 10.1073/pnas.0800375105
+VL  - 105
+J2  - Proc Natl Acad Sci U S A
+UR  - https://doi.org/10.1073/pnas.0800375105
+ER  - 
+
+TY  - JOUR
+TI  - The interpretation of habitat preference metrics under use-availability designs
+AU  - Beyer, H. L.
+AU  - Haydon, D. T.
+AU  - Morales, J. M.
+AU  - Frair, J. L.
+AU  - Hebblewhite, M.
+AU  - Mitchell, M.
+AU  - Matthiopoulos, J.
+T2  - Philos Trans R Soc B Biol Sci
+DA  - 2010///
+PY  - 2010
+DO  - 10.1098/rstb.2010.0083
+VL  - 365
+J2  - Philos Trans R Soc B Biol Sci
+UR  - https://doi.org/10.1098/rstb.2010.0083
+ER  - 
+
+TY  - JOUR
+TI  - Accounting for animal movement in estimation of resource selection functions: sampling and data analysis
+AU  - Forester, J. D.
+AU  - Im, H. K.
+AU  - Rathouz, P. J.
+T2  - Ecology
+DA  - 2009///
+PY  - 2009
+DO  - 10.1890/08-0874.1
+VL  - 90
+J2  - Ecology
+UR  - https://doi.org/10.1890/08-0874.1
+ER  - 
+
+TY  - JOUR
+TI  - Establishing the link between habitat selection and animal population dynamics
+AU  - Matthiopoulos, Jason
+AU  - Fieberg, John
+AU  - Aarts, Geert
+AU  - Beyer, Hawthorne L.
+AU  - Morales, Juan M.
+AU  - Haydon, Daniel T.
+T2  - Ecological Monographs
+AB  - Although classical ecological theory (e.g., on ideal free consumers) recognizes the potential effect of population density on the spatial distribution of animals, empirical species distribution models assume that species–habitat relationships remain unchanged across a range of population sizes. Conversely, even though ecological models and experiments have demonstrated the importance of spatial heterogeneity for the rate of population change, we still have no practical method for making the connection between the makeup of real environments, the expected distribution and fitness of their occupants, and the long‐term implications of fitness for population growth. Here, we synthesize several conceptual advances into a mathematical framework using a measure of fitness to link habitat availability/selection to (density‐dependent) population growth in mobile animal species. A key feature of this approach is that it distinguishes between apparent habitat suitability and the true, underlying contribution of a habitat to fitness, allowing the statistical coefficients of both to be estimated from multiple observation instances of the species in different environments and stages of numerical growth. Hence, it leverages data from both historical population time series and snapshots of species distribution to predict population performance under environmental change. We propose this framework as a foundation for building more realistic connections between a population's use of space and its subsequent dynamics (and hence a contribution to the ongoing efforts to estimate a species' critical habitat and fundamental niche). We therefore detail its associated definitions and simplifying assumptions, because they point to the framework's future extensions. We show how the model can be fit to data on species distributions and population dynamics, using standard statistical methods, and we illustrate its application with an individual‐based simulation. When contrasted with nonspatial population models, our approach is better at fitting and predicting population growth rates and carrying capacities. Our approach can be generalized to include a diverse range of biological considerations. We discuss these possible extensions and applications to real data.
+DA  - 2015///
+PY  - 2015
+DO  - 10.1890/14-2244.1
+VL  - 85
+IS  - 3
+SP  - 413
+EP  - 436
+UR  - https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/14-2244.1
+KW  - accessibility
+KW  - climate change
+KW  - conservation
+KW  - density dependence
+KW  - generalized functional response
+KW  - generalized linear model
+KW  - habitat suitability
+KW  - ideal free distribution
+KW  - mathematical model
+KW  - resource selection function
+KW  - simulation
+KW  - species distribution models
+ER  - 
+
+TY  - JOUR
+TI  - Identification of reindeer fine-scale foraging behaviour using tri-axial accelerometer data
+AU  - Rautiainen, Heidi
+AU  - Alam, Moudud
+AU  - Blackwell, Paul G.
+AU  - Skarin, Anna
+T2  - Movement Ecology
+AB  - Animal behavioural responses to the environment ultimately affect their survival. Monitoring animal fine-scale behaviour may improve understanding of animal functional response to the environment and provide an important indicator of the welfare of both wild and domesticated species. In this study, we illustrate the application of collar-attached acceleration sensors for investigating reindeer fine-scale behaviour. Using data from 19 reindeer, we tested the supervised machine learning algorithms Random forests, Support vector machines, and hidden Markov models to classify reindeer behaviour into seven classes: grazing, browsing low from shrubs or browsing high from trees, inactivity, walking, trotting, and other behaviours. We implemented leave-one-subject-out cross-validation to assess generalizable results on new individuals. Our main results illustrated that hidden Markov models were able to classify collar-attached accelerometer data into all our pre-defined behaviours of reindeer with reasonable accuracy while Random forests and Support vector machines were biased towards dominant classes. Random forests using 5-s windows had the highest overall accuracy (85%), while hidden Markov models were able to best predict individual behaviours and handle rare behaviours such as trotting and browsing high. We conclude that hidden Markov models provide a useful tool to remotely monitor reindeer and potentially other large herbivore species behaviour. These methods will allow us to quantify fine-scale behavioural processes in relation to environmental events.
+DA  - 2022/09/20/
+PY  - 2022
+DO  - 10.1186/s40462-022-00339-0
+VL  - 10
+IS  - 1
+SP  - 40
+J2  - Movement Ecology
+SN  - 2051-3933
+UR  - https://doi.org/10.1186/s40462-022-00339-0
+ER  - 
+
+TY  - JOUR
+TI  - Grizzly Bear Prehibernation and Denning Activities as Determined by Radiotracking
+AU  - Craighead, Frank C.
+AU  - Craighead, John J.
+T2  - Wildlife Monographs
+DA  - 1972///
+PY  - 1972
+IS  - 32
+SP  - 3
+EP  - 35
+SN  - 00840173, 19385455
+UR  - http://www.jstor.org/stable/3830494
+DB  - JSTOR
+Y2  - 2023/09/05/
+ER  - 
+
+TY  - JOUR
+TI  - What is a home range?
+AU  - Powell, Roger A.
+AU  - Mitchell, Michael S.
+T2  - Journal of Mammalogy
+AB  - “Home range” is a standard concept in animal ecology and behavior but few people try to understand what home ranges mean to the animals that have them and often assume that a home-range estimate, quantified using some method, is the home range. This leads to 2 problems. First, researchers put much energy into discerning and using the “best” methods for estimating home ranges while no one understands, really, what a home range is. Second, maps delineating home-range estimates may have little connection with what home ranges are and what they mean to the animals that have them. To gain insight into these problems, Roger Powell (hereafter, Roger) documented his own use of space for 65 days, obtaining complete data on where he went, what he did, and how much energy and money he expended and gained in each place. Roger's use of space is consistent with how other mammals use space and, therefore, examination of his data provides insight into what a home range is and how ecologists should approach quantifying other animals' home ranges. We present estimates of Roger's home range in 5 different metrics, or currencies, that provide important and different insights. Home-range estimators that combine different types of information to estimate the spatial distribution and qualities of resources that structure animal behavior (i.e., fitness surfaces) will probably provide the most insight into animals’ home ranges. To make reasonable estimates of home ranges, researchers must collect data on habitat, resources, and other attributes of the landscape, so that they can understand basic behaviors of animals and understand how animals may view their environment. We propose that the best concept of a home range is that part of an animal's cognitive map of its environment that it chooses to keep updated.
+DA  - 2012/09/14/
+PY  - 2012
+DO  - 10.1644/11-MAMM-S-177.1
+VL  - 93
+IS  - 4
+SP  - 948
+EP  - 958
+J2  - Journal of Mammalogy
+SN  - 0022-2372
+UR  - https://doi.org/10.1644/11-MAMM-S-177.1
+Y2  - 2023/09/05/
+ER  - 
+
+TY  - JOUR
+TI  - Territoriality and Home Range Concepts as Applied to Mammals
+AU  - Burt, William Henry
+T2  - Journal of Mammalogy
+DA  - 1943///
+PY  - 1943
+DO  - 10.2307/1374834
+VL  - 24
+IS  - 3
+SP  - 346
+EP  - 352
+SN  - 00222372, 15451542
+UR  - http://www.jstor.org/stable/1374834
+DB  - JSTOR
+Y2  - 2023/09/05/
+ER  - 
+
+TY  - JOUR
+TI  - Applications of step-selection functions in ecology and conservation
+AU  - Thurfjell, Henrik
+AU  - Ciuti, Simone
+AU  - Boyce, Mark S.
+T2  - Movement Ecology
+AB  - Recent progress in positioning technology facilitates the collection of massive amounts of sequential spatial data on animals. This has led to new opportunities and challenges when investigating animal movement behaviour and habitat selection. Tools like Step Selection Functions (SSFs) are relatively new powerful models for studying resource selection by animals moving through the landscape. SSFs compare environmental attributes of observed steps (the linear segment between two consecutive observations of position) with alternative random steps taken from the same starting point. SSFs have been used to study habitat selection, human-wildlife interactions, movement corridors, and dispersal behaviours in animals. SSFs also have the potential to depict resource selection at multiple spatial and temporal scales. There are several aspects of SSFs where consensus has not yet been reached such as how to analyse the data, when to consider habitat covariates along linear paths between observations rather than at their endpoints, how many random steps should be considered to measure availability, and how to account for individual variation. In this review we aim to address all these issues, as well as to highlight weak features of this modelling approach that should be developed by further research. Finally, we suggest that SSFs could be integrated with state-space models to classify behavioural states when estimating SSFs.
+DA  - 2014/02/07/
+PY  - 2014
+DO  - 10.1186/2051-3933-2-4
+VL  - 2
+IS  - 1
+SP  - 4
+J2  - Movement Ecology
+SN  - 2051-3933
+UR  - https://doi.org/10.1186/2051-3933-2-4
+ER  - 
+
+TY  - JOUR
+TI  - Animal movement tools (amt): R package for managing tracking data and conducting habitat selection analyses
+AU  - Signer, Johannes
+AU  - Fieberg, John
+AU  - Avgar, Tal
+T2  - Ecology and Evolution
+AB  - Abstract Advances in tracking technology have led to an exponential increase in animal location data, greatly enhancing our ability to address interesting questions in movement ecology, but also presenting new challenges related to data management and analysis. Step-selection functions (SSFs) are commonly used to link environmental covariates to animal location data collected at fine temporal resolution. SSFs are estimated by comparing observed steps connecting successive animal locations to random steps, using a likelihood equivalent of a Cox proportional hazards model. By using common statistical distributions to model step length and turn angle distributions, and including habitat- and movement-related covariates (functions of distances between points, angular deviations), it is possible to make inference regarding habitat selection and movement processes or to control one process while investigating the other. The fitted model can also be used to estimate utilization distributions and mechanistic home ranges. Here, we present the R package amt (animal movement tools) that allows users to fit SSFs to data and to simulate space use of animals from fitted models. The amt package also provides tools for managing telemetry data. Using fisher (Pekania pennanti) data as a case study, we illustrate a four-step approach to the analysis of animal movement data, consisting of data management, exploratory data analysis, fitting of models, and simulating from fitted models.
+DA  - 2019/01/01/
+PY  - 2019
+DO  - 10.1002/ece3.4823
+VL  - 9
+IS  - 2
+SP  - 880
+EP  - 890
+J2  - Ecology and Evolution
+SN  - 2045-7758
+UR  - https://doi.org/10.1002/ece3.4823
+Y2  - 2023/09/05/
+KW  - habitat selection
+KW  - home range
+KW  - movement ecology
+KW  - resource-selection function
+KW  - step-selection function
+KW  - telemetry
+ER  - 
+
+TY  - JOUR
+TI  - A ‘How to’ guide for interpreting parameters in habitat-selection analyses
+AU  - Fieberg, John
+AU  - Signer, Johannes
+AU  - Smith, Brian
+AU  - Avgar, Tal
+T2  - Journal of Animal Ecology
+AB  - Abstract Habitat-selection analyses allow researchers to link animals to their environment via habitat-selection or step-selection functions, and are commonly used to address questions related to wildlife management and conservation efforts. Habitat-selection analyses that incorporate movement characteristics, referred to as integrated step-selection analyses, are particularly appealing because they allow modelling of both movement and habitat-selection processes. Despite their popularity, many users struggle with interpreting parameters in habitat-selection and step-selection functions. Integrated step-selection analyses also require several additional steps to translate model parameters into a full-fledged movement model, and the mathematics supporting this approach can be challenging for many to understand. Using simple examples, we demonstrate how weighted distribution theory and the inhomogeneous Poisson point process can facilitate parameter interpretation in habitat-selection analyses. Furthermore, we provide a ?how to? guide illustrating the steps required to implement integrated step-selection analyses using the amt package By providing clear examples with open-source code, we hope to make habitat-selection analyses more understandable and accessible to end users.
+DA  - 2021/05/01/
+PY  - 2021
+DO  - 10.1111/1365-2656.13441
+VL  - 90
+IS  - 5
+SP  - 1027
+EP  - 1043
+J2  - Journal of Animal Ecology
+SN  - 0021-8790
+UR  - https://doi.org/10.1111/1365-2656.13441
+Y2  - 2023/09/05/
+KW  - habitat-selection function
+KW  - inhomogeneous Poisson point process
+KW  - integrated step-selection analysis
+KW  - intensity function
+KW  - relative selection strength
+KW  - resource-selection function
+KW  - step-selection function
+KW  - telemetry
+ER  - 
+
+TY  - JOUR
+TI  - Subpopulation augmentation among habitat patches as a tool to manage an endangered Mojave Desert wetlands-dependent rodent during anthropogenic restricted water climate regimes
+AU  - López-Pérez, Andrés M.
+AU  - Foley, Janet
+AU  - Roy, Austin
+AU  - Pesapane, Risa
+AU  - Castle, Stephanie
+AU  - Poulsen, Amanda
+AU  - Clifford, Deana L.
+T2  - PLOS ONE
+AB  - Intensive management may be necessary to protect some highly vulnerable endangered species, particularly those dependent on water availability regimes that might be disrupted by ongoing climate change. The Amargosa vole (Microtus californicus scirpensis) is an increasingly imperiled rodent constrained to rare wetland habitat in the Mojave Desert. In 2014 and 2016, we trapped and radio-collared 30 voles, 24 were translocated and six remained at donor and recipient marshes as resident control voles. Soft-release was performed followed by remote camera and radio-telemetry monitoring. Although comparative metrics were not statistically significant, the mean maximum known distance moved (MDM) was longer for translocated (82.3 ± 14.6 m) vs. resident-control voles (74.9 ± 17.5 m) and for female (98.4 ± 19.9 m) vs. male (57.8 ± 9.1 m) voles. The mean area occupied (AO) tended to be greater in female (0.15 ± 0.04 ha) vs. male (0.12 ± 0.03 ha) voles, and control voles (0.15 ± 0.05 ha) compared with translocated voles (0.13 ± 0.03 ha). The mean minimum known time alive (MTA) was 38.2 ± 19.4 days for resident-control voles and 47.0 ± 10.6 days for translocated voles. Female survival (55.7 ± 14.3 days) exceeded that of males (31.5 ± 9.4 days) regardless of study group. Activity in bulrush/rushes mix and bulrush vegetation types was strongly and significantly overrepresented compared with salt grass and rushes alone, and habitat selection did not differ between resident and translocated voles. Our results provide ecological and methodological insights for future translocations as part of a strategy of promoting long-term survival of an extremely endangered small mammal in a wild desert environment.
+DA  - 2019/10/24/
+PY  - 2019
+DO  - 10.1371/journal.pone.0224246
+VL  - 14
+IS  - 10
+SP  - e0224246
+J2  - PLOS ONE
+UR  - https://doi.org/10.1371/journal.pone.0224246
+ER  - 
+
+TY  - JOUR
+TI  - Interpretation of Models of Fundamental Ecological Niches and Species' Distributional Areas
+AU  - Soberon, Jorge
+AU  - Peterson, A. Townsend
+T2  - Biodiversity Informatics
+AB  - &lt;p&gt;Ecological niche modeling, that is, estimation of the dimensions of fundamental ecological niches of species to predict their geographic distributions is increasingly being employed in systematics, ecology, conservation, public health, etc. This technique is often (of necessity) based on data comprising records of presences only. In recent years, many modeling approaches have been devised to estimate these interrelated expressions of a species' ecology, distributional biology, and evolutionary history nevertheless, in many cases, a formal basis in ecological and evolutionary theory has been lacking. In this paper, we outline such a formal basis for the suite of techniques that can be termed 'ecological niche modeling,' analyze example situations that can be modeled using these techniques, and clarify the interpretation of results.&lt;/p&gt;
+DA  - 2005/01/13/
+PY  - 2005
+DO  - 10.17161/bi.v2i0.4
+VL  - 2
+IS  - 0
+J2  - Biodiv. Inf.
+UR  - https://journals.ku.edu/jbi/article/view/4
+Y2  - 2023/09/05/
+ER  - 
+
+TY  - JOUR
+TI  - Accounting for individual-specific variation in habitat-selection studies: Efficient estimation of mixed-effects models using Bayesian or frequentist computation
+AU  - Muff, Stefanie
+AU  - Signer, Johannes
+AU  - Fieberg, John
+T2  - Journal of Animal Ecology
+AB  - Abstract Popular frameworks for studying habitat selection include resource-selection functions (RSFs) and step-selection functions (SSFs), estimated using logistic and conditional logistic regression, respectively. Both frameworks compare environmental covariates associated with locations animals visit with environmental covariates at a set of locations assumed available to the animals. Conceptually, slopes that vary by individual, that is, random coefficient models, could be used to accommodate inter-individual heterogeneity with either approach. While fitting such models for RSFs is possible with standard software for generalized linear mixed-effects models (GLMMs), straightforward and efficient one-step procedures for fitting SSFs with random coefficients are currently lacking. To close this gap, we take advantage of the fact that the conditional logistic regression model (i.e. the SSF) is likelihood-equivalent to a Poisson model with stratum-specific fixed intercepts. By interpreting the intercepts as a random effect with a large (fixed) variance, inference for random-slope models becomes feasible with standard Bayesian techniques, or with frequentist methods that allow one to fix the variance of a random effect. We compare this approach to other commonly applied alternatives, including models without random slopes and mixed conditional regression models fit using a two-step algorithm. Using data from mountain goats (Oreamnos americanus) and Eurasian otters (Lutra lutra), we illustrate that our models lead to valid and feasible inference. In addition, we conduct a simulation study to compare different estimation approaches for SSFs and to demonstrate the importance of including individual-specific slopes when estimating individual- and population-level habitat-selection parameters. By providing coded examples using integrated nested Laplace approximations (INLA) and Template Model Builder (TMB) for Bayesian and frequentist analysis via the R packages R-INLA and glmmTMB, we hope to make efficient estimation of RSFs and SSFs with random effects accessible to anyone in the field. SSFs with individual-specific coefficients are particularly attractive since they can provide insights into movement and habitat-selection processes at fine-spatial and temporal scales, but these models had previously been very challenging to fit.
+DA  - 2020/01/01/
+PY  - 2020
+DO  - 10.1111/1365-2656.13087
+VL  - 89
+IS  - 1
+SP  - 80
+EP  - 92
+J2  - Journal of Animal Ecology
+SN  - 0021-8790
+UR  - https://doi.org/10.1111/1365-2656.13087
+Y2  - 2023/09/06/
+KW  - conditional logistic regression
+KW  - glmmTMB
+KW  - integrated nested Laplace approximations (INLA)
+KW  - multinomial regression
+KW  - random effects
+KW  - resource-selection functions
+KW  - step-selection functions
+ER  - 
+
+TY  - JOUR
+TI  - Mapping resource selection functions in wildlife studies: Concerns and recommendations
+AU  - Morris, Lillian R.
+AU  - Proffitt, Kelly M.
+AU  - Blackburn, Jason K.
+T2  - Applied Geography
+AB  - Predicting the spatial distribution of animals is an important and widely used tool with applications in wildlife management, conservation, and population health. Wildlife telemetry technology coupled with the availability of spatial data and GIS software have facilitated advancements in species distribution modeling. There are also challenges related to these advancements including the accurate and appropriate implementation of species distribution modeling methodology. Resource Selection Function (RSF) modeling is a commonly used approach for understanding species distributions and habitat usage, and mapping the RSF results can enhance study findings and make them more accessible to researchers and wildlife managers. Currently, there is no consensus in the literature on the most appropriate method for mapping RSF results, methods are frequently not described, and mapping approaches are not always related to accuracy metrics. We conducted a systematic review of the RSF literature to summarize the methods used to map RSF outputs, discuss the relationship between mapping approaches and accuracy metrics, performed a case study on the implications of employing different mapping methods, and provide recommendations as to appropriate mapping techniques for RSF studies. We found extensive variability in methodology for mapping RSF results. Our case study revealed that the most commonly used approaches for mapping RSF results led to notable differences in the visual interpretation of RSF results, and there is a concerning disconnect between accuracy metrics and mapping methods. We make 5 recommendations for researchers mapping the results of RSF studies, which are focused on carefully selecting and describing the method used to map RSF studies, and relating mapping approaches to accuracy metrics.
+DA  - 2016/11/01/
+PY  - 2016
+DO  - 10.1016/j.apgeog.2016.09.025
+VL  - 76
+SP  - 173
+EP  - 183
+J2  - Applied Geography
+SN  - 0143-6228
+UR  - https://www.sciencedirect.com/science/article/pii/S0143622816304714
+KW  - Elk
+KW  - Habitat model
+KW  - Species distribution model map
+ER  - 
+
+TY  - JOUR
+TI  - Characterizing wildlife behavioural responses to roads using integrated step selection analysis
+AU  - Prokopenko, Christina M.
+AU  - Boyce, Mark S.
+AU  - Avgar, Tal
+T2  - Journal of Applied Ecology
+AB  - Summary Roads are a prevalent, ever-increasing form of human disturbance on the landscape. In many places in western North America, energy development has brought human and road disturbance into seasonal winter range areas for migratory elk. We sought to evaluate the predictions from the risk-disturbance hypothesis when studying elk response to roads during winter. Road proximity and crossing were used to evaluate these behaviours, which offered a rare comparison between two common measures of roads. We used integrated step selection analysis (iSSA) to evaluate four alternative hypotheses regarding the influence of roads on space-use behaviour across 175 elk-years of elk telemetry data, and we quantified both population-level and individual-level variations in responses. We demonstrated, for the first time, how iSSA can be used to combine movement analysis in a refined approach to habitat selection. Elk responded to roads as they would natural predation risk. Elk selected areas farther from roads at all times of day with avoidance being greatest during twilight. In addition, elk sought cover and moved more when in the vicinity of roads. Road crossings were generally avoided, but this avoidance was weakest during daytime when elk were both moving and closer to roads. Synthesis and applications. Energy development is transforming landscapes in western North America with the proliferation of roads, which we show is having substantial and multifaceted negative effects on elk movement and behaviour. These adverse effects can be mitigated by minimizing new road construction and by restricting traffic on roads as well as providing the protection of tree cover on elk winter ranges.
+DA  - 2017/04/01/
+PY  - 2017
+DO  - 10.1111/1365-2664.12768
+VL  - 54
+IS  - 2
+SP  - 470
+EP  - 479
+J2  - Journal of Applied Ecology
+SN  - 0021-8901
+UR  - https://doi.org/10.1111/1365-2664.12768
+Y2  - 2023/09/06/
+KW  - Alberta
+KW  - Cervus elaphus
+KW  - energy development
+KW  - habitat selection
+KW  - human disturbance
+KW  - movement
+KW  - relative selection strength
+KW  - step selection function
+KW  - winter range
+ER  - 
+
+TY  - JOUR
+TI  - Integrated step selection analysis: bridging the gap between resource selection and animal movement
+AU  - Avgar, Tal
+AU  - Potts, Jonathan R.
+AU  - Lewis, Mark A.
+AU  - Boyce, Mark S.
+T2  - Methods in Ecology and Evolution
+AB  - Summary A resource selection function is a model of the likelihood that an available spatial unit will be used by an animal, given its resource value. But how do we appropriately define availability? Step selection analysis deals with this problem at the scale of the observed positional data, by matching each ?used step? (connecting two consecutive observed positions of the animal) with a set of ?available steps? randomly sampled from a distribution of observed steps or their characteristics. Here we present a simple extension to this approach, termed integrated step selection analysis (iSSA), which relaxes the implicit assumption that observed movement attributes (i.e. velocities and their temporal autocorrelations) are independent of resource selection. Instead, iSSA relies on simultaneously estimating movement and resource selection parameters, thus allowing simple likelihood-based inference of resource selection within a mechanistic movement model. We provide theoretical underpinning of iSSA, as well as practical guidelines to its implementation. Using computer simulations, we evaluate the inferential and predictive capacity of iSSA compared to currently used methods. Our work demonstrates the utility of iSSA as a general, flexible and user-friendly approach for both evaluating a variety of ecological hypotheses, and predicting future ecological patterns.
+DA  - 2016/05/01/
+PY  - 2016
+DO  - 10.1111/2041-210X.12528
+VL  - 7
+IS  - 5
+SP  - 619
+EP  - 630
+J2  - Methods in Ecology and Evolution
+SN  - 2041-210X
+UR  - https://doi.org/10.1111/2041-210X.12528
+Y2  - 2023/09/06/
+KW  - conditional logistic regression
+KW  - dispersal
+KW  - habitat selection
+KW  - movement ecology
+KW  - random walk
+KW  - redistribution kernel
+KW  - resource selection
+KW  - step selection
+KW  - telemetry
+KW  - utilisation distribution
+ER  - 
+
+TY  - JOUR
+TI  - Accelerating advances in landscape connectivity modelling with the ConScape library
+AU  - Van Moorter, Bram
+AU  - Kivimäki, Ilkka
+AU  - Noack, Andreas
+AU  - Devooght, Robin
+AU  - Panzacchi, Manuela
+AU  - Hall, Kimberly R.
+AU  - Leleux, Pierre
+AU  - Saerens, Marco
+T2  - Methods in Ecology and Evolution
+AB  - Abstract Increasingly precise spatial data (e.g. high-resolution imagery from remote sensing) allow for improved representations of the landscape network for assessing the combined effects of habitat loss and connectivity declines on biodiversity. However, evaluating large landscape networks presents a major computational challenge both in terms of working memory and computation time. We present the ConScape (i.e. ?connected landscapes?) software library implemented in the high-performance open-source Julia language to compute metrics for connected habitat and movement flow on high-resolution landscapes. The combination of Julia's ?just-in-time? compiler, efficient algorithms and ?landmarks? to reduce the computational load allows ConScape to compute landscape ecological metrics?originally developed in metapopulation ecology (such as ?metapopulation capacity? and ?probability of connectivity?)?for large landscapes. An additional major innovation in ConScape is the adoption of the randomized shortest paths framework to represent connectivity along the continuum from optimal to random movements, instead of only those extremes. We demonstrate ConScape's potential for using large datasets in sustainable land planning by modelling landscape connectivity based on remote-sensing data paired with GPS tracking of wild reindeer in Norway. To guide users, we discuss other applications, and provide a series of worked examples to showcase all ConScape's functionalities in Supplementary Material. Built by a team of ecologists, network scientists and software developers, ConScape is able to efficiently compute landscape metrics for high-resolution landscape representations to leverage the availability of large data for sustainable land use and biodiversity conservation. As a Julia implementation, ConScape combines computational efficiency with a transparent code base, which facilitates continued innovation through contributions from the rapidly growing community of landscape and connectivity modellers using Julia.
+DA  - 2023/01/01/
+PY  - 2023
+DO  - 10.1111/2041-210X.13850
+VL  - 14
+IS  - 1
+SP  - 133
+EP  - 145
+J2  - Methods in Ecology and Evolution
+SN  - 2041-210X
+UR  - https://doi.org/10.1111/2041-210X.13850
+Y2  - 2023/09/06/
+KW  - circuitscape
+KW  - conefor
+KW  - ecological networks
+KW  - least-cost path
+KW  - metapopulation
+KW  - random walk
+KW  - randomized shortest paths
+ER  - 
+
+TY  - JOUR
+TI  - A model-driven approach to quantify migration patterns: individual, regional and yearly differences
+AU  - Bunnefeld, Nils
+AU  - Börger, Luca
+AU  - van Moorter, Bram
+AU  - Rolandsen, Christer M.
+AU  - Dettki, Holger
+AU  - Solberg, Erling Johan
+AU  - Ericsson, Göran
+T2  - Journal of Animal Ecology
+AB  - Summary 1.?Animal migration has long intrigued scientists and wildlife managers alike, yet migratory species face increasing challenges because of habitat fragmentation, climate change and over-exploitation. Central to the understanding migratory species is the objective discrimination between migratory and nonmigratory individuals in a given population, quantifying the timing, duration and distance of migration and the ability to predict migratory movements. 2.?Here, we propose a uniform statistical framework to (i) separate migration from other movement behaviours, (ii) quantify migration parameters without the need for arbitrary cut-off criteria and (iii) test predictability across individuals, time and space. 3.?We first validated our novel approach by simulating data based on established theoretical movement patterns. We then formulated the expected shapes of squared displacement patterns as nonlinear models for a suite of movement behaviours to test the ability of our method to distinguish between migratory movement and other movement types. 4.?We then tested our approached empirically using 108 wild Global Positioning System (GPS)-collared moose Alces alces in Scandinavia as a study system because they exhibit a wide range of movement behaviours, including resident, migrating and dispersing individuals, within the same population. Applying our approach showed that 87% and 67% of our Swedish and Norwegian subpopulations, respectively, can be classified as migratory. 5.?Using nonlinear mixed effects models for all migratory individuals we showed that the distance, timing and duration of migration differed between the sexes and between years, with additional individual differences accounting for a large part of the variation in the distance of migration but not in the timing or duration. Overall, the model explained most of the variation (92%) and also had high predictive power for the same individuals over time (69%) as well as between study populations (74%). 6.?The high predictive ability of the approach suggests that it can help increase our understanding of the drivers of migration and could provide key quantitative information for understanding and managing a broad range of migratory species.
+DA  - 2011/03/01/
+PY  - 2011
+DO  - 10.1111/j.1365-2656.2010.01776.x
+VL  - 80
+IS  - 2
+SP  - 466
+EP  - 476
+J2  - Journal of Animal Ecology
+SN  - 0021-8790
+UR  - https://doi.org/10.1111/j.1365-2656.2010.01776.x
+Y2  - 2023/09/06/
+KW  - animal movement
+KW  - moose
+KW  - net squared displacement
+KW  - nonlinear mixed models
+KW  - spatial ecology
+ER  - 
+
+TY  - JOUR
+TI  - aniMotum, an R package for animal movement data: Rapid quality control, behavioural estimation and simulation
+AU  - Jonsen, Ian D.
+AU  - Grecian, W. James
+AU  - Phillips, Lachlan
+AU  - Carroll, Gemma
+AU  - McMahon, Clive
+AU  - Harcourt, Robert G.
+AU  - Hindell, Mark A.
+AU  - Patterson, Toby A.
+T2  - Methods in Ecology and Evolution
+AB  - Abstract Animal tracking data are indispensable for understanding the ecology, behaviour and physiology of mobile or cryptic species. Meaningful signals in these data can be obscured by noise due to imperfect measurement technologies, requiring rigorous quality control as part of any comprehensive analysis. State?space models are powerful tools that separate signal from noise. These tools are ideal for quality control of error-prone location data and for inferring where animals are and what they are doing when they record or transmit other information. However, these statistical models can be challenging and time-consuming to fit to diverse animal tracking data sets. The R package aniMotum eases the tasks of conducting quality control on and inference of changes in movement from animal tracking data. This is achieved via: (1) a simple but extensible workflow that accommodates both novice and experienced users; (2) automated processes that alleviate complexity from data processing and model specification/fitting steps; (3) simple movement models coupled with a powerful numerical optimization approach for rapid and reliable model fitting. We highlight aniMotum's capabilities through three applications to real animal tracking data. Full R code for these and additional applications is included as Supporting Information, so users can gain a deeper understanding of how to use aniMotum for their own analyses.
+DA  - 2023/03/01/
+PY  - 2023
+DO  - 10.1111/2041-210X.14060
+VL  - 14
+IS  - 3
+SP  - 806
+EP  - 816
+J2  - Methods in Ecology and Evolution
+SN  - 2041-210X
+UR  - https://doi.org/10.1111/2041-210X.14060
+Y2  - 2023/09/06/
+KW  - animal movement
+KW  - bio-telemetry
+KW  - biologging
+KW  - move persistence
+KW  - movement behaviour
+KW  - random walk
+KW  - simulation
+KW  - state–space model
+ER  - 
+
+TY  - JOUR
+TI  - ctmm: an r package for analyzing animal relocation data as a continuous-time stochastic process
+AU  - Calabrese, Justin M.
+AU  - Fleming, Chris H.
+AU  - Gurarie, Eliezer
+T2  - Methods in Ecology and Evolution
+AB  - Summary Movement ecology has developed rapidly over the past decade, driven by advances in tracking technology that have largely removed data limitations. Development of rigorous analytical tools has lagged behind empirical progress, and as a result, relocation data sets have been underutilized. Discrete-time correlated random walk models (CRW) have long served as the foundation for analyzing relocation data. Unfortunately, CRWs confound the sampling and movement processes. CRW parameter estimates thus depend sensitively on the sampling schedule, which makes it difficult to draw sampling-independent inferences about the underlying movement process. Furthermore, CRWs cannot accommodate the multiscale autocorrelations that typify modern, finely sampled relocation data sets. Recent developments in modelling movement as a continuous-time stochastic process (CTSP) solve these problems, but the mathematical difficulty of using CTSPs has limited their adoption in ecology. To remove this roadblock, we introduce the ctmm package for the R statistical computing environment. ctmm implements all of the CTSPs currently in use in the ecological literature and couples them with powerful statistical methods for autocorrelated data adapted from geostatistics and signal processing, including variograms, periodograms and non-Markovian maximum likelihood estimation. ctmm is built around a standard workflow that begins with visual diagnostics, proceeds to candidate model identification, and then to maximum likelihood fitting and AIC-based model selection. Once an accurate CTSP for the data has been fitted and selected, analyses that require such a model, such as quantifying home range areas via autocorrelated kernel density estimation or estimating occurrence distributions via time-series Kriging, can then be performed. We use a case study with African buffalo to demonstrate the capabilities of ctmm and highlight the steps of a typical CTSP movement analysis workflow.
+DA  - 2016/09/01/
+PY  - 2016
+DO  - 10.1111/2041-210X.12559
+VL  - 7
+IS  - 9
+SP  - 1124
+EP  - 1132
+J2  - Methods in Ecology and Evolution
+SN  - 2041-210X
+UR  - https://doi.org/10.1111/2041-210X.12559
+Y2  - 2023/09/06/
+KW  - autocorrelated kernel density estimation
+KW  - home range estimation
+KW  - non-Markovian maximum likelihood
+KW  - periodogram analysis
+KW  - tracking data
+KW  - variogram analysis
+ER  - 
+
+TY  - JOUR
+TI  - A rare 300 kilometer dispersal by an adult male white-tailed deer
+AU  - Moll, Remington J.
+AU  - McRoberts, Jon T.
+AU  - Millspaugh, Joshua J.
+AU  - Wiskirchen, Kevyn H.
+AU  - Sumners, Jason A.
+AU  - Isabelle, Jason L.
+AU  - Keller, Barbara J.
+AU  - Montgomery, Robert A.
+T2  - Ecology and Evolution
+AB  - Abstract Despite the key roles that dispersal plays in individual animal fitness and meta-population gene flow, it remains one of the least understood behaviors in many species. In large mammalian herbivores, dispersals might span long distances and thereby influence landscape-level ecological processes, such as infectious disease spread. Here, we describe and analyze an exceptional long-distance dispersal by an adult white-tailed deer (Odocoileus virginianus) in the central United States. We also conducted a literature survey to compare the dispersal to previous studies. This dispersal was remarkable for its length, duration, and the life history stage of the dispersing individual. Dispersal is typical of juvenile deer seeking to establish postnatal home ranges, but this dispersal was undertaken by an adult male (age = 3.5). This individual dispersed ~300 km over a 22-day period by moving, on average, 13.6 km/day and achieving a straight-line distance of ~215 km, which was ~174 km longer than any other distance recorded for an adult male deer in our literature survey. During the dispersal, which occurred during the hunting season, the individual crossed a major river seven times, an interstate highway, a railroad, and eight state highways. Movements during the dispersal were faster (mean = 568.1 m/h) and more directional than those during stationary home range periods before and after the dispersal (mean = 56.9 m/h). Likewise, movements during the dispersal were faster (mean = 847.8 m/h) and more directional at night than during the day (mean = 166.4 m/h), when the individual frequently sheltered in forest cover. This natural history event highlights the unpredictable nature of dispersal and has important implications for landscape-level processes such as chronic wasting disease transmission in cervids. More broadly, our study underscores how integrating natural history observations with modern technology holds promise for understanding potentially high impact but rarely recorded ecological events.
+DA  - 2021/05/01/
+PY  - 2021
+DO  - 10.1002/ece3.7354
+VL  - 11
+IS  - 9
+SP  - 3685
+EP  - 3695
+J2  - Ecology and Evolution
+SN  - 2045-7758
+UR  - https://doi.org/10.1002/ece3.7354
+Y2  - 2023/09/06/
+KW  - chronic wasting disease
+KW  - migration
+KW  - movement ecology
+KW  - ungulate
+ER  - 
+
+TY  - JOUR
+TI  - Where do seeds go when they go far? Distance and directionality of avian seed dispersal in heterogeneous landscapes
+AU  - Carlo, Tomás A.
+AU  - García, Daniel
+AU  - Martínez, Daniel
+AU  - Gleditsch, Jason M.
+AU  - Morales, Juan M.
+T2  - Ecology
+AB  - Seed dispersal at large scales strongly influences plant population dynamics. Still, ecologists have rarely measured seed dispersal at relevant scales, and the role of habitat types in affecting seed dispersal at long distances remains unexplored. We studied seed dispersal of Ilex aquifolium and Crataegus monogyna in northern Spain, hypothesizing that seeds would be recovered at higher rates and at longer distances (LDD) at habitats with fleshy-fruited trees, compared to habitats with other tree types or at open habitats. We tracked seeds in eight landscapes by enriching trees with 15N isotopes at the center of landscapes, and then detected 15N-marked seeds by sampling at distances of up to 700 m. We found that seeds arrive in greater densities and at longer distances in habitats with trees, particularly fleshy-fruited types, producing different LDD probabilities for each habitat. Results also show a disproportional arrival of seeds in habitats similar to those of mother plants, which should affect seed establishment and the genetic diversity of plant neighborhoods. Findings reveal the strong dependence of seed dispersal on the existing templates that guide the movements of avian dispersers in heterogeneous landscapes and also suggest that LDD above tree lines and beyond hard habitat edges can be difficult.
+DA  - 2013/02/01/
+PY  - 2013
+DO  - 10.1890/12-0913.1
+VL  - 94
+IS  - 2
+SP  - 301
+EP  - 307
+J2  - Ecology
+SN  - 0012-9658
+UR  - https://doi.org/10.1890/12-0913.1
+Y2  - 2023/09/06/
+KW  - avian dispersers
+KW  - Cantabrian Range, northern Spain
+KW  - Crataegus monogyna
+KW  - directed dispersal
+KW  - dispersal kernel
+KW  - European holly
+KW  - frugivory
+KW  - hawthorn
+KW  - Ilex aquifolium
+KW  - landscape connectivity
+KW  - seed shadow
+KW  - stable isotopes
+ER  - 
+
+TY  - BOOK
+TI  - The Physics of Foraging: An Introduction to Random Searches and Biological Encounters
+A3  - Raposo, Ernesto P.
+A3  - Viswanathan, Gandhimohan. M.
+A3  - Stanley, H. Eugene
+A3  - da Luz, Marcos G. E.
+CY  - Cambridge
+DA  - 2011///
+PY  - 2011
+DP  - Cambridge University Press
+PB  - Cambridge University Press
+SN  - 978-1-107-00679-9
+UR  - https://www.cambridge.org/core/books/physics-of-foraging/frontmatter/5BDF50CF0573AE9A5A79F94D21830B71
+DB  - Cambridge Core
+ER  - 
+
