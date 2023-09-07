@@ -287,7 +287,11 @@ plot(FA_net, main="Feeding area", displaylabels=F, vertex.col=CPheno$NetCol, ver
 
 ## Filtering networks: Egocentric networks {#fns}
 
-In social network analysis, an egocentric network is a sub network centered around a specific individual, referred to as the "ego." This sub network includes the ego (central individual) along with their directly connected social contacts, known as neighbors. These networks provide insights into the immediate social environment of an individual. Analyzing egocentric networks can provide information about: - *Neighbors degree Centrality*: The number of connections each neighbor has. This gives insight into the social activity and prominence of the ego's contacts. - *Ties among neighbors*: The presence or absence of connections between neighbors. This reveals potential subgroups within the ego's network. - *Structural Holes*: The absence of connections between alters indicates the possibility of the ego transmitting information between disconnected parts of its network. - *Homophily*: Exploring whether the neighbors share certain characteristics with the ego.
+In social network analysis, an egocentric network is a sub network centered around a specific individual, referred to as the "ego." This sub network includes the ego (central individual) along with their directly connected social contacts, known as neighbors. These networks provide insights into the immediate social environment of an individual. Analyzing egocentric networks can provide information about:  
+- *Neighbors degree Centrality*: The number of connections each neighbor has. This gives insight into the social activity and prominence of the ego's contacts.  
+- *Ties among neighbors*: The presence or absence of connections between neighbors. This reveals potential subgroups within the ego's network.  
+- *Structural Holes*: The absence of connections between alters indicates the possibility of the ego transmitting information between disconnected parts of its network.  
+- *Homophily*: Exploring whether the neighbors share certain characteristics with the ego. 
 
 Plot an egocentric network focused on one individual:\
 
@@ -325,7 +329,6 @@ Study how the cow's characteristics included in `CPheno` (Parity, Lactation_stag
 ## Feeding area
 
 ```{r}
-# Feeding area:
 FA_net %v% "Parity"          <- as.character(CPheno$Parity)
 FA_net %v% "Lactation_stage" <- as.character(CPheno$Lactation_stage)
 FA_net %v% "Pregnancy_status"<- as.character(CPheno$Pregnancy_status)
