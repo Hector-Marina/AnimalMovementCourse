@@ -114,16 +114,17 @@ FA_data[FA_data$Time %in% c(FA_data_Euc[FA_data_Euc$Eucdist<2.5,"Time"]), ]$TagC
 Produce an animation of the movements and spatial contact of this pair of cows:\
 
 ```{r message=FALSE}
-# Plot the walked areas
-{ggplot(FA_data, aes(x, y, color = TagCol)) +
-  annotation_custom(Swedish_rg) +
-  geom_point(color = FA_data$TagCol) +
-  theme_void() +
-  theme(legend.position = "none", aspect.ratio = Y_png/X_png) +
-  xlim(0,X_png) + ylim(1695,Y_png) +
-  transition_time(c(1:86400,1:86400)) +
-  ease_aes('linear') +
-  shadow_mark(alpha = 0.2, size = 0.3)}
+s.contact.anim <- ggplot(FA_data[(1:nrow(FA_data)) %% 2 == 0, ], 
+                  aes(x, y, color = TagCol)) +
+                  annotation_custom(Swedish_rg) +
+                  geom_point(color = FA_data[(1:nrow(FA_data)) %% 2 == 0, "TagCol"]) +
+                  theme_void() +
+                  theme(legend.position = "none", aspect.ratio = Y_png/X_png) +
+                  xlim(0,X_png) + ylim(1695,Y_png) +
+                  transition_time(c(1:43200,1:43200)) +
+                  ease_aes('linear') +
+                  shadow_mark(alpha = 0.2, size = 0.3)
+animate(s.contact.anim, fps = 10, duration = 40)
 ```
 
 ## Social contact information {#pam}
