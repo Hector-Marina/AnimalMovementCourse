@@ -53,9 +53,11 @@ plot(land_cover)
 plot(dem)
 
 # read classes for the land cover map
-lc_class <- read.csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv", header = F,
-                     col.names = c("code", "class"), stringsAsFactors = F) |>
+lc_class <- read_csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv", 
+                      col_names = F) |> 
+  rename(code = 1, class = 2, land_cover = 3) |> 
   dplyr::arrange(code)
+lc_class
 
 
 # MANLY'S INDEX ----

@@ -60,7 +60,7 @@ plot(dem, main = "Elevation") # elevation
 # read classes for the land cover map
 lc_class <- read_csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv", 
                       col_names = F) |> 
-  rename(code = 1, class = 2) |> 
+  rename(code = 1, class = 2, land_cover = 3) |> 
   dplyr::arrange(code)
 lc_class
 
