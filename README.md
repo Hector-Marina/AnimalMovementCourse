@@ -18,7 +18,11 @@ The aim of this course is to **learn methodological approaches** to analyse move
 
 🔗 **Official course page**: [Animal Movement Course at SLU](https://www.slu.se/en/study/programmes-courses/doctoral-education/research-schools/gs-vmas/courses/)
 
-![Ekenas herrgard](man/figures/Ekenasherrgard.jpg){width="70%" fig-align="center"}
+<p align="center">
+
+<img src="man/figures/Ekenasherrgard.jpg" alt="Ekenas herrgard" align="center" width="70%"/>
+
+</p>
 
 ------------------------------------------------------------------------
 
@@ -63,7 +67,12 @@ The aim of this course is to **learn methodological approaches** to analyse move
 
 -   Lecture about activity sensors (AS, LR)
 
-![Poster analysis](man/figures/Posteranalysis.png){width="70%" fig-align="center"}
+
+<p align="center">
+
+<img src="man/figures/Posteranalysis.png" alt="Poster analysis" align="center" width="70%"/>
+
+</p>
 
 ------------------------------------------------------------------------
 
