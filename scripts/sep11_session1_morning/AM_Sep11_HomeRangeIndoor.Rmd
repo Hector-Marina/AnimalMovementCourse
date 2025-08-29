@@ -5,11 +5,12 @@ date: "2025-08-29"
 output: html_document
 ---
 
+```{=html}
 <style>
 body {
 text-align: justify}
 </style>
-
+```
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
 htmltools::tagList()
@@ -18,19 +19,21 @@ htmltools::tagList()
 # Home range methods on indoor data
 
 ## Introduction
+
 This tutorial provides an overview of R packages for estimating area usage using indoor positioning data from dairy cattle. During this tutorial, we will explore information of a commercial farm of dairy cattle in Sweden. This farm has installed a Real-Time Location System (RTLS) based on ultra-wide band that provides the location of all the cows on the farm. Lactating cows were equipped with a tag attached to their collars. Using the position information of the cows, we can calculate daily home ranges and study how different cow characteristics might affect the use of space in the barn.
 
-1.  [Farm information](#rfi) \
-    1.1. [Animal information](#rfi-a) \
-    1.2. [Farm plan](#rfi-f) \
-2.  [Position data](#rpai) \
-3.  [Indoor area usage](#eiau) \
-    3.1. [Area walked and its perimeter](#eiau-a) \
-    3.2. [Indoor home ranges](#eiau-b) \
-    3.3. [Include boundaries](#eiau-c) \
-    3.4. [Contrast methods](#eiau-d) \
+1.  [Farm information](#rfi)\
+    1.1. [Animal information](#rfi-a)\
+    1.2. [Farm plan](#rfi-f)\
+2.  [Position data](#rpai)\
+3.  [Indoor area usage](#eiau)\
+    3.1. [Area walked and its perimeter](#eiau-a)\
+    3.2. [Indoor home ranges](#eiau-b)\
+    3.3. [Include boundaries](#eiau-c)\
+    3.4. [Contrast methods](#eiau-d)\
 
 ### Required packages
+
 ```{r message=FALSE}
 library("ggplot2")      # represent the animal movements
 library("png")          # png in the background of a ggplot
@@ -41,9 +44,11 @@ library("adehabitatHR") # For kernels
 ```
 
 ## Farm information {#rfi}
+
 Position data was collected from a Swedish commercial dairy farm. This farm housed around 210 lactating dairy cows (Holstein, Red Dairy Cattle, and Crossbred) in a non-insulated free-stall barn. The farm is divided into two milking groups, early and late lactation groups, each with a pen area of 14 m × 56 m and 102-103 cubicles, with rubber mattresses and sawdust as bedding material. Further information about the farm can be found in [Hansson et al., 2023](https://doi.org/10.3168/JDS.2022-21915).\
 
 ### Animal information {#rfi-a}
+
 First, we read the information about the cows in the early lactation group at this Swedish dairy farm. Cow information contains:\
 - *MatID*: Identification code for the social network matrices.\
 - *Tag*: Tag mounted code.\
@@ -91,9 +96,10 @@ Y_png<-max(BarnPlan$Y2) # length of the farm
 
 The next two codes will represent the farm plan using different methods that will allow us to combine the area usage information with the farm plan.\
 
-# {.tabset}
+#  {.tabset}
 
 ## Using base R
+
 ```{r}
 # Create plot
 {plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
@@ -105,6 +111,7 @@ for (i in 1:nrow(BarnPlan)) {
 ```
 
 ## Using ggplot2
+
 ```{r}
 ggplot(BarnPlan, aes(xmin = X1, xmax = X2, ymin = Y1, ymax = Y2)) +
     geom_rect(aes(fill = as.factor(Area)), alpha=0.2, fill=BarnPlan$Color, colour = "grey50") +
@@ -116,10 +123,12 @@ ggplot(BarnPlan, aes(xmin = X1, xmax = X2, ymin = Y1, ymax = Y2)) +
     labs(x=NULL, y=NULL, title=NULL)
 ```
 
-# {}
+# 
 
 ## Position data {#rpai}
+
 This FA data format received from the RTLS consists of the "raw" position information of the lactating cows. This position information also includes also missing data.
+
 ```{r}
 FA_raw <- read.table(
   unz("../../data/raw/indoor/FA_EarlyLactationGroup_20201017.zip", "FA_EarlyLactationGroup_20201017.txt"), 
@@ -127,15 +136,18 @@ FA_raw <- read.table(
 ```
 
 Count the number of cows with position information:
+
 ```{r}
 NAnim<-length(unique(FA_raw$ID))
 NAnim
 ```
+
 Considering that the RTLS automatically collects the individual position of the cows with a 1-s fix rate. The proportion of missing data will be:
 
 ```{r}
 nrow(FA_raw) / (NAnim * 86400) #60s/min*60min/hrs*24hrs/day=86400s/day
 ```
+
 Due to the missing data, interpolation is a necessary step before this information can be analysed. The FA interpolated file also contains the position information of the lactating cows, but in this case it has been interpolated using the Modified Akima interpolation method. For more relevant information about the interpolation method used see: [Ren et al., 2022](https://doi.org/10.3389/fanim.2022.896666).
 
 ```{r}
@@ -165,9 +177,10 @@ Swedish_rg <- grid::rasterGrob(Swedish_r, width=unit(1,"npc"), height=unit(1,"np
 
 Represent the total area used by this animal during the day:
 
-# {.tabset}
+#  {.tabset}
 
 ## Using base R
+
 ```{r}
 # Plot farm plan
 {plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
@@ -181,6 +194,7 @@ points(x = FA_data$x, y = FA_data$y, col = "orange", cex=0.5)
 ```
 
 ## Using ggplot2
+
 ```{r}
 # Plot the farm map
 ggplot(FA_data, aes(x, y)) +
@@ -191,9 +205,10 @@ ggplot(FA_data, aes(x, y)) +
   xlim(0,X_png) + ylim(1695,Y_png)
 ```
 
-# {}
+# 
 
 Plot an animation of the area used by this animal:
+
 ```{r message=FALSE}
 {ggplot(FA_data, aes(x, y)) +
     annotation_custom(Swedish_rg) +
@@ -207,9 +222,11 @@ Plot an animation of the area used by this animal:
 ```
 
 ## Indoor area usage {#eiau}
+
 In this section, we will estimate different measures that describe the use of area by animals using 24h position data. First, we will calculate the area walked by the animal and its perimeter. Second, we will estimate the home range without taking into account the presence of boundaries that limit the use of the area. Finally, we will include these boundaries and compare the results obtained by the three methods.
 
 ### Area walked and its perimeter {#eiau-a}
+
 The perimeter of the area used by the animals during a day can be calculated by identifying the smallest shape resulting from the intersection of a subset of data points that contains all the positions. In geometry, this is known as convex hull, convex envelope or convex closure. The `chull` function excludes those points that are not needed to generate this envelope:
 
 ```{r}
@@ -238,9 +255,10 @@ pracma::polyarea(FA_hull$y,FA_hull$x)
 
 Draw the convex envelope containing all the position data points:
 
-# {.tabset}
+#  {.tabset}
 
 ## Using base R
+
 ```{r}
 # Plot farm plan
 {plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
@@ -254,6 +272,7 @@ polygon(FA_hull$x, FA_hull$y, border = "orange", lwd = 3, col = NA)
 ```
 
 ## Using ggplot2
+
 ```{r}
 ggplot(data = FA_data, aes(x, y)) +
       annotation_custom(Swedish_rg) +
@@ -264,9 +283,10 @@ ggplot(data = FA_data, aes(x, y)) +
       xlim(0,X_png) + ylim(1695,Y_png)
 ```
 
-# {}
+# 
 
 ### Indoor home ranges {#eiau-b}
+
 Estimate the home range of the selected individual using 24-hour position data, ignoring the fact that there are boundaries that limit area use. To estimate the home range, we will use the `kernelUD` function, which estimates the utilisation distribution (UD). This function is based on the probability of finding an individual at a given point according to its position data. Through it we can define the home range as the minimum area where the individual can be found with a given probability (e.g., 95%).\
 Before compute the home range, we use the `coordinates` function to convert the position data into a spatial object by specifying which variables are the spatial coordinates:
 
@@ -302,6 +322,7 @@ plot(getverticeshr(HomeRange, 95), add = TRUE, border = "black", lwd = 1)
 ```
 
 ### Include boundaries {#eiau-c}
+
 In this subsection, we will consider the boundaries to which each lactation group is subjected in the `kernelUD` function. The boundary (SpatialLines) parameter allow us allows to define a barrier that cannot be crossed by the animals. The method for correcting boundary biases was described by [Benhamou and Cornelis (2010)](https://doi.org/10.1111/j.1937-2817.2010.tb01257.x). In this case, the boundary is defined by several connected lines enclosing the data points. The length of the boundaries shall be defined in centimeters in the same way as the positional information.
 
 ```{r}
@@ -386,6 +407,7 @@ plot(getverticeshr(HomeRangeBound, 95), add = TRUE, border = "black", lwd = 1)
 ```
 
 ### Contrast methods {#eiau-d}
+
 The graphs of the perimeter of the area walked and the utilisation distribution results obtained using the bounded and unbounded kernel approaches represent different area utilisation results. The convex envelope encloses a large area that was not fully used by the animal. The unbounded Kernel result includes areas located outside the boundaries, while the bounded kernel method is more accurate given the characteristics of the farm. Let's see how the numerical results are affected by the different this different approach.
 
 #### Extract and compare numeric values
@@ -412,59 +434,26 @@ getverticeshr(HomeRangeBound, 95)$area
 
 Let's now display the results of the three approaches in a single image so that we can clearly observe the differences.
 
-```{r}
+```{r eval=FALSE}
 {par(mfrow=c(1,3))
 #1) Plot position data + convex hull
-  plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
-  # Draw the polygons of the different areas of the barn
-  for (i in 1:nrow(BarnPlan)) {
-    polygon(c(BarnPlan$X1[i], BarnPlan$X2[i], BarnPlan$X2[i], BarnPlan$X1[i]),
-            c(BarnPlan$Y1[i], BarnPlan$Y1[i], BarnPlan$Y2[i], BarnPlan$Y2[i]),
-            border = "darkgrey",lwd = 2)}
-  # Plot convex envelope
-  polygon(FA_hull$x, FA_hull$y, border = "darkorange", lwd = 2, col = NA)
-  #Plot position data
-  points(x = FA_data$x, y = FA_data$y, col = "orange", cex=0.3)
+#
 
 #2) Usage Distribution estimated through the unbounded kernelUD approach.
-  plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
-  # Plot the home range
-  Perlist<- rev(seq(5, 95, 5))
-  colPal <- colorRampPalette(c("lightyellow", "yellow","orange", "red"))(length(Perlist))
-  for (i in c(1:length(Perlist))){
-        plot(getverticeshr(HomeRange, Perlist[i]), add = TRUE, col=colPal[i], border = NA)}
-  
-  # Draw the polygons of the different areas of the barn
-  for (i in 1:nrow(BarnPlan)) {
-    polygon(c(BarnPlan$X1[i], BarnPlan$X2[i], BarnPlan$X2[i], BarnPlan$X1[i]),
-            c(BarnPlan$Y1[i], BarnPlan$Y1[i], BarnPlan$Y2[i], BarnPlan$Y2[i]),
-            border = "darkgrey",lwd = 2)}
-  # Plotting the perimeter for the 95% contour line
-  plot(getverticeshr(HomeRange, 95), add = TRUE, border = "black", lwd = 1)
+# 
 
 #3) Usage Distribution estimated thorugh the bounded kernelUD approach.
-  plot(NA, xlim = c(0, 3340), ylim = c(0, 8738), xlab = "X", ylab = "Y", asp=1, xaxt='n')
-  # Plot the home range
-  Perlist<- rev(seq(5, 95, 5))
-  colPal <- colorRampPalette(c("lightyellow", "yellow","orange", "red"))(length(Perlist))
-  for (i in c(1:length(Perlist))){
-        plot(getverticeshr(HomeRangeBound, Perlist[i]), add = TRUE, col=colPal[i], border = NA)}
-  
-  # Draw the polygons of the different areas of the barn
-  for (i in 1:nrow(BarnPlan)) {
-    polygon(c(BarnPlan$X1[i], BarnPlan$X2[i], BarnPlan$X2[i], BarnPlan$X1[i]),
-            c(BarnPlan$Y1[i], BarnPlan$Y1[i], BarnPlan$Y2[i], BarnPlan$Y2[i]),
-            border = "darkgrey",lwd = 2)}
-  # Plotting the perimeter for the 95% contour line
-  plot(getverticeshr(HomeRangeBound, 95), add = TRUE, border = "black", lwd = 1)
+# 
 }
-
 ```
-
 
 #### Recommended literature
 
-- Hansson, I., Silvera, A., Ren, K., Woudstra, S., Skarin, A., Fikse, W. F., Nielsen, P. P., & Rönnegård, L. (2023). Cow characteristics associated with the variation in number of contacts between dairy cows. Journal of Dairy Science.
-- Ren, K., Alam, M., Nielsen, P. P., Gussmann, M. K., & Rönnegård, L. (2022).\ Interpolation methods to improve data quality of indoor positioning data for dairy cattle. Frontiers in Animal Science, 53.\
-- Ren, K., Nielsen, P. P., Alam, M., & Rönnegård, L. (2021). Where do we find missing data in a commercial real-time location system? Evidence from 2 dairy farms. JDS Communications, 2(6):345-350.\
-- Churakov, M., Silvera, A. M., Gussmann, M., & Nielsen, P. P. (2021). Parity and days in milk affect cubicle occupancy in dairy cows. Applied Animal Behaviour Science, 105494.\
+-   Hansson, I., Silvera, A., Ren, K., Woudstra, S., Skarin, A., Fikse, W. F., Nielsen, P. P., & Rönnegård, L. (2023). [Cow characteristics associated with the variation in number of contacts between dairy cows](https://doi.org/10.3168/JDS.2022-21915). Journal of Dairy Science.
+-   Ren, K., Alam, M., Nielsen, P. P., Gussmann, M. K., & Rönnegård, L. (2022). [Interpolation methods to improve data quality of indoor positioning data for dairy cattle](https://doi.org/10.3389/FANIM.2022.896666). Frontiers in Animal Science.
+-   Ren, K., Nielsen, P. P., Alam, M., & Rönnegård, L. (2021). [Where do we find missing data in a commercial real-time location system? Evidence from 2 dairy farms](https://doi.org/10.3168/JDSC.2020-0064). JDS Communications.
+-   Churakov, M., Silvera, A. M., Gussmann, M., & Nielsen, P. P. (2021). [Parity and days in milk affect cubicle occupancy in dairy cows](https://doi.org/10.1016/J.APPLANIM.2021.105494). Applied Animal Behaviour Science.
+-   Marina, H., Ren, K., Hansson, I., Fikse, F., Nielsen, P.P. & Rönnegård, L. (2024). [New insight into social relationships in dairy cows and how time of birth, parity, and relatedness affect spatial interactions later in life](https://doi.org/10.3168/JDS.2023-23483). Journal of Dairy Science.
+-   Marina, H., Nielsen, P.P., Fikse, W.F. & Rönnegård, L. (2024). [Multiple factors shape social contacts in dairy cows](https://doi.org/10.1016/J.APPLANIM.2024.106366). Applied Animal Behaviour Science.
+-   Marina, H., Fikse, W.F. & Rönnegård, L. (2024). [Social network analysis to predict social behavior in dairy cattle](https://doi.org/10.3168/JDSC.2023-0507). JDS Communications.
+-   Gussmann, M., Marina, H., Ren, K., Rönnegård, L. & Nielsen, P.P. (2025). [Variations in cow behaviour after regrouping in a conventional Swedish dairy herd](https://doi.org/10.1016/J.APPLANIM.2025.106790). Applied Animal Behaviour Science.

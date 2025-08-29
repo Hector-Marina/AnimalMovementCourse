@@ -12,15 +12,13 @@ Animal movements -- from free ranging to restricted indoor environments.
 
 The aim of this course is to **learn methodological approaches** to analyse movement data on animals in natural, semi-natural, or indoor environments. The focus is on using existing R packages for movement analysis, evaluating how animals are affected by their environments, and what drives their behavioural decisions.
 
-📅 **Course date**: 8--12 September 2025\
-📍 **Place**: Ekenäs herrgård in Sörmland, Sweden 
+📅 **Course date**: 8--12 September 2025
+
+📍 **Place**: Ekenäs herrgård in Sörmland, Sweden
+
 🔗 **Official course page**: [Animal Movement Course at SLU](https://www.slu.se/en/study/programmes-courses/doctoral-education/research-schools/gs-vmas/courses/)
 
-<p align="center">
-
-<img src="man/figures/Ekenasherrgard.jpg" alt="Ekenas herrgard" width="80%"/>
-
-</p>
+![Ekenas herrgard](man/figures/Ekenasherrgard.jpg){width="70%" fig-align="center"}
 
 ------------------------------------------------------------------------
 
@@ -64,6 +62,8 @@ The aim of this course is to **learn methodological approaches** to analyse move
 ### Day 5
 
 -   Lecture about activity sensors (AS, LR)
+
+![Poster analysis](man/figures/Posteranalysis.png){width="70%" fig-align="center"}
 
 ------------------------------------------------------------------------
 
