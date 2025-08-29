@@ -5,8 +5,8 @@
 # Automated script to install the R packages needed for the programme of this course.
 
 # Checking the version of R required for the pipeline
-if (!grepl("R version 4.2.3", R.version$version.string)) {
-  stop("This course requires R version 4.2.3 to be installed.\n")
+if (!grepl("R version 4.5.1", R.version$version.string)) {
+  stop("This course requires R version 4.5.1 to be installed.\n")
 }
 
 # List of packages required for the pipeline
