@@ -1,9 +1,9 @@
 ###############################################################X
 #----Analysis of Animal Movement Data in R Workshop------------X
 #-------------------- Introduction ----------------------------X
-#----------------Last updated 2023-08-14-----------------------X
+#--------------- Last updated 2025-09-04 ----------------------X
 #---------------------- Exercise ------------------------------X
-#--- Prepared by: Johannes Signer (jsigner@gwdg.de) -----------X
+#--- Prepared by: Johannes Signer (jsigner@uni-goettingen.de) -X
 #---------------- Bernardo Niebuhr (bernardo.brandao@nina.no) -X
 ###############################################################X
 
@@ -32,10 +32,10 @@ library(ggplot2)
 # `st_read` from the `sf`-Package to read the into R. 
 
 dat <- st_read("data/processed/outdoor/gpsdata_april_june2021.gpkg")
-head(dat)
-str(dat)
-nrow(dat)
-st_crs(dat)
+head(dat) # See the first 6 rows of the data
+str(dat) # The structure of the object
+nrow(dat) # Show the number of observations in the data set
+st_crs(dat) # Show the coordinate reference system (CRS) of the data 
 dat
 
 # We can plot that
