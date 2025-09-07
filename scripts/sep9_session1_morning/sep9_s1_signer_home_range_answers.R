@@ -1,7 +1,7 @@
 ###############################################################X
 #----Analysis of Animal Movement Data in R Workshop------------X
 #---------------- Home-Range Estimation -----------------------X
-#----------------Last updated 2023-08-21-----------------------X
+#----------------Last updated 2025-09-07-----------------------X
 #---------------------- Exercise ------------------------------X
 #--- Prepared by: Johannes Signer (jsigner@gwdg.de) -----------X
 #---------------- Bernardo Niebuhr (bernardo.brandao@nina.no) -X
@@ -262,3 +262,4 @@ res1 |> ggplot(aes(x = from, y = to, fill = overlap)) + geom_raster() +
   theme_light() +
   coord_equal() +
   theme(axis.text.x = element_text(angle = 90))
+

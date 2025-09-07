@@ -1,10 +1,11 @@
 #'###################################################################X
 #----Analysis of Animal Movement Data in R Workshop------------------X
 #-------------------- Habitat selection  ----------------------------X
-#----------------Last updated 2023-08-24-----------------------------X
+#----------------Last updated 2025-09-07-----------------------------X
 #---------------------- Exercise  -----------------------------------X
 #-Prepared by: Anna Skarin (anna.skarin@slu.se)  --------------------X
 # ------------ Bernardo Niebuhr (bernardo.brandao@nina.no) ----------X
+# ------------ Johannes Signer (jsigner@uni-goettingen.de) ----------X
 #-inspired from the vignette: ---------------------------------------X
 #-https://cran.r-project.org/web/packages/amt/vignettes/p3_rsf.html -X
 #####################################################################X
