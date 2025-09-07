@@ -1,9 +1,9 @@
 ###############################################################X
 #----Analysis of Animal Movement Data in R Workshop------------X
 #-------------------- Introduction ----------------------------X
-#----------------Last updated 2023-08-14-----------------------X
+#--------------- Last updated 2025-09-04 ----------------------X
 #---------------------- Exercise ------------------------------X
-#--- Prepared by: Johannes Signer (jsigner@gwdg.de) -----------X
+#--- Prepared by: Johannes Signer (jsigner@uni-goettingen.de) -X
 #---------------- Bernardo Niebuhr (bernardo.brandao@nina.no) -X
 ###############################################################X
 
@@ -32,10 +32,10 @@ library(ggplot2)
 # `st_read` from the `sf`-Package to read the into R. 
 
 dat <- st_read("data/processed/outdoor/gpsdata_april_june2021.gpkg")
-head(dat)
-str(dat)
-nrow(dat)
-st_crs(dat)
+head(dat) # See the first 6 rows of the data
+str(dat) # The structure of the object
+nrow(dat) # Show the number of observations in the data set
+st_crs(dat) # Show the coordinate reference system (CRS) of the data 
 dat
 
 # We can plot that
@@ -102,7 +102,8 @@ trk1 <- make_track(dat1, X, Y, ts, id = Collar_ID, crs = st_crs(dat))
 # function `as_track()` on `dat`.
 # Check ?as_track.
 
-# TODO!
+# Try it!
+
 
 
 # We now save this object in a file  called "gps_data_track.rds" 
@@ -114,6 +115,7 @@ trk1 <- make_track(dat1, X, Y, ts, id = Collar_ID, crs = st_crs(dat))
 
 # save the object
 saveRDS(trk1, file = "data/processed/outdoor/gps_data_track.rds")
+
 
 #----------------------------------
 
@@ -140,9 +142,6 @@ class(animal1)
 
 
 # ... S: Solution -----
-
-
-
 
 
 # ... Changing the CRS ----
@@ -193,9 +192,6 @@ animal2
 # ... S: Solution -----
 
 
-
-
-
 # ... Movement attributes ----
 
 # We can now calculate for example step lengths with the function
@@ -213,8 +209,9 @@ animal4 <- animal3 %>% mutate(sl = step_lengths(.))
 animal4 %>% group_by(burst_) %>% 
   summarize(fs = head(sl, 1), ls = tail(sl, 1)) %>% 
   pivot_longer(-burst_) %>% 
-  ggplot(aes(name, value, group = burst_)) + geom_point(alpha = 0.1) + 
-  geom_line(alpha = 0.1)
+  ggplot(aes(name, value, group = burst_)) + 
+  geom_point(alpha = 0.2) + 
+  geom_line(alpha = 0.2)
 
 
 # Let's repeat the same analysis, but this time with bursts now for calculating
@@ -226,8 +223,9 @@ animal5 <- animal3 %>% nest(data = -burst_) %>%
 animal5 %>% group_by(burst_) %>% 
   summarize(fs = head(sl, 1), ls = tail(sl, 2)[1]) %>% 
   pivot_longer(-burst_) %>% 
-  ggplot(aes(name, value, group = burst_)) + geom_point(alpha = 0.1) + 
-  geom_line(alpha = 0.1)
+  ggplot(aes(name, value, group = burst_)) + 
+  geom_point(alpha = 0.2) + 
+  geom_line(alpha = 0.2)
 
 
 # ... Steps ---- 
@@ -265,16 +263,23 @@ s2 |> print(n = Inf)
 # use nest() and unnest(), following the class slides.
 
 # ... S: Solution ---
-
-
-
-
-
-
-
-
-
-
+trk2 <- trk1 |> 
+  # Specify the name of the new column (here data). All columns except id
+  # will be put into this list. 
+  nest(data = -id) |> 
+  # We can use mutate to create new columns
+  mutate(
+    # First we create a new column with the resampled data. 
+    # `map` iterates over a list (i.e., applies the function to each element in data). 
+    # `~` can be thought of as: "do what ever comes afterwards to each element .x", 
+    # where `.x` is the element currently under evaluation. 
+    data.resampled = map(data, ~ track_resample(.x, rate = hours(4), tolerance = minutes(5)))
+    ) |> 
+  # select columns
+  select(id, data.resampled) |> 
+  # unnest to return to a data.frame structure
+  unnest(data.resampled)
+trk2
 
 
 # ... E: Exercise --- 
@@ -286,26 +291,10 @@ s2 |> print(n = Inf)
 
 
 
-
-
-
-
-
-
-
-
-
-
 # ... E: Exercise --- 
 # Use the `unnest()` function after and create a histogram of step-lengths (the column `sl_`)
 
 # ... S: Solution ---
-
-
-
-
-
-
 
 
 # ... E: Exercise --- 
@@ -314,11 +303,4 @@ s2 |> print(n = Inf)
 
 
 # ... S: Solution ---
-
-
-
-
-
-
-
 
