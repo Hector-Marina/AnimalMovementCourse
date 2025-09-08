@@ -80,7 +80,7 @@ plot(land_cover, main = "Land cover")
 
 # Load data for the exercises
 # Load prepared tracks 
-dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
+dat <- read_rds("data/processed/outdoor/gps_data_track_bkp.rds")
 
 # Subset to one individual
 a1 <- dat %>% 
