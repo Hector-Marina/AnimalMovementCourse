@@ -5,6 +5,8 @@ date: "2025-08-29"
 output: html_document
 ---
 
+![](../../logo/logo.png)
+
 <style>
   body {
     text-align: justify}
@@ -16,7 +18,9 @@ htmltools::tagList()
 ```
 
 # Social network analysis
+
 ## Introduction
+
 This tutorial provides an overview of R packages for social network analysis using indoor positioning data of dairy cattle. We will analyse information from a commercial dairy farm in Sweden. The farm has installed an ultra-wideband based Real-Time Location System (RTLS) that provides the location of all the cows on the farm. Lactating cows were equipped with a tag attached to their collars. Using the position information of the cows, we can estimate daily spatial interaction networks and study how cow characteristics affect the network structure.  
 1. [Farm information](#rfi)\
 2. [Position data](#rpai)\

@@ -5,6 +5,8 @@ date: "2025-08-29"
 output: html_document
 ---
 
+![](../../logo/logo.png)
+
 ```{=html}
 <style>
 body {
