@@ -4,6 +4,10 @@ date: "2025-08-29"
 output: html_document
 ---
 
+![](../../logo/logo.png)
+
+
+
 *Hej Hej* !
 
 Welcome to the Animal Movement PhD course! We have prepared some exercises to help you:
