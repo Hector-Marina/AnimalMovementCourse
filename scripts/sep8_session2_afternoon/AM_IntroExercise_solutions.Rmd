@@ -129,7 +129,7 @@ UWDPhe=read.table("../../data/raw/indoor/Cow_Phenotypes.csv", sep= ",", header =
 UWDPhe_Parity2=unique(UWDPhe[UWDPhe$Parity=="2","ID"])
 
 # Transform Time data into POSIXct format
-UWBdata$Time=as.POSIXct(UWBdata$Time, format = "%d-%b-%Y %H:%M:%S")
+UWBdata$Time=as.POSIXct(UWBdata$Time, format = "%d-%b-%Y %H:%M:%S",  tz = "UTC")
 
 # Filter by parity 
 UWBdata_Parity2=UWBdata[UWBdata$ID%in%UWDPhe_Parity2,]
@@ -148,4 +148,5 @@ plot(UWBdata_Parity2_11[,c("x","y")],xlim=xlims,ylim=ylims, pch = 19, col = "dar
 ```         
 Note: Once you have finished the exercise, save your changes. Remember not to 'pull' once you have changed the files, or they will overwrite the original repository contents. To avoid this, copy the file out of the directory.
 Any questions will be answered on the first day of the course, after we have presented the data that we will be using during the week. There are many possible solutions to this exercise; we will upload one of them to the repository on the first day. 
+PS. If the time conversion command did not work (`as.POSIXct()`) try running this command right before it ('Sys.setlocale("LC_TIME", "C")').
 ```
