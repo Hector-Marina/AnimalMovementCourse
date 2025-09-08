@@ -40,12 +40,12 @@ dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
 
 # Load the environmental data
 # Load the Swedish national land cover data (NMD)
-land_cover <- terra::rast("data/raw/outdoor/nmd10_ungeneralized_stakke.tif")
+land_cover <- terra::rast("data/raw/outdoor/nmd100_ungeneralized_stakke.tif")
 names(land_cover) <- "land_cover"
 land_cover
 
 # Load elevation data (DEM)
-dem <- terra::rast("data/raw/outdoor/DEM10_stakke.tif")
+dem <- terra::rast("data/raw/outdoor/DEM100_stakke.tif")
 names(dem) <- "dem"
 dem
 
