@@ -1,0 +1,148 @@
+---
+title: "Animal Movement - Intro Exercise"
+date: "2025-08-29"
+output: html_document
+---
+
+*Hej Hej* !
+
+Welcome to the Animal Movement PhD course! We have prepared some exercises to help you:
+
+-   verify that you have installed all the packages needed for the course\
+-   get familiar with the GitHub content\
+-   run simple descriptive statistics on the course data.
+
+To run this script correctly, we recommend opening it (*AM_IntroExercise.Rmd*) in R-Studio. This will enable you to modify the script's contents in the various command boxes and save the changes and results. We estimate that preparation will take 1--2 hours.
+
+Let's get to work! ;-)
+
+## Package installation
+
+We have prepared a script to help you install all the packages required for the course. First, the script will check that you have the correct version of R installed. Then, it will install the required R packages if they are not already installed. Let's now take a look at how it works:\
+\
+1. It checks if a package is already installed:
+
+```{r eval=FALSE}
+requireNamespace("ggplot2")==TRUE
+```
+
+\
+2. It installs the package if it was not already installed:
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+\
+3. It checks if the installation was performed correctly:
+
+```{r eval=FALSE}
+requireNamespace("ggplot2")==TRUE
+```
+
+\
+\
+Now, you can execute the package installation script:
+
+```{r eval=FALSE}
+source(".installpackages.R")
+```
+
+```         
+Note: If you did not open the document as instructed, you may need to adjust the command path.
+The installation script can be found in this directory: ./scripts/sep4_session2_afternoon/.installpackages.R 
+```
+
+## Descriptive statistics exercises
+
+The next two exercises will introduce you to the data that we will use throughout the course.
+
+### Exercise 1: Outdoor data
+
+#### Step 1: Import the outdoor data file
+
+Read the file `./data/raw/outdoor/gpsdata_april_june2021.csv`.
+
+```{r}
+GPSdata=read.table("../../data/raw/outdoor/gpsdata_april_june2021.csv", sep=",", header = T)
+```
+
+\
+
+#### Step 2: Number of individuals
+
+Now, summarise the number of individuals contained in this file: *For the purposes of this exercise, we will assume that each individual is wearing only one GPS collar and that these collars were not worn by two different individuals during this period.*
+
+```{r}
+length(unique(GPSdata$Collar_ID))
+```
+
+\
+
+#### Step 3: Simple plots
+
+Please select an individual and plot their location during the study period.
+
+```{r}
+ID=unique(GPSdata$Collar_ID)[1]
+xlims=range(GPSdata$X, na.rm = TRUE)
+ylims=range(GPSdata$Y, na.rm = TRUE)
+plot(GPSdata[GPSdata$Collar_ID==ID,c("X","Y")],xlim=xlims,ylim=ylims, pch = 19, col = "blue")
+```
+
+\
+
+### Exercise 2: Indoor data
+
+#### Step 1: Import the indoor data file
+
+Read the file `./data/raw/indoor/FA_EarlyLactationGroup_20201017.txt`.
+```{r}
+UWBdata=read.table(
+  unz("../../data/raw/indoor/FA_EarlyLactationGroup_20201017.zip", "FA_EarlyLactationGroup_20201017.txt"), 
+  header=TRUE,  sep=",", col.names = c("FILE","ID","Tag","Time","x","y","z"))
+```
+
+\
+
+#### Step 2: Number of data points per individual
+
+Select an individual from the list of individuals in the file `./data/raw/indoor/EarlyLactationGroup_idList.txt` and summarise the number of data points for that individual in the position data file: *When analysing ultra-wideband data from commercial farms, some collars are usually stored in a cabinet, but the anchors still capture their signal. Therefore, it is important to filter this information out of the collected data.*
+
+```{r}
+UWDIDs=as.list(read.table("../../data/raw/indoor/EarlyLactationGroup_idList.txt", sep= ",", header = F))
+print(paste("Individual",UWDIDs[[1]],"has a total of",nrow(UWBdata[UWBdata$ID==UWDIDs[[1]],]),"positions recorded on 17 October 2020. See the summary of the axis below:"))
+summary(UWBdata[UWBdata$ID==UWDIDs[[1]],c("x","y")])
+```
+
+\
+
+#### Step 3: Simple plots
+
+Please read the file `./data/raw/indoor/Cow_Phenotypes.csv`, which contains the cows' phenotype information. Plot the position of all cows in parity 2 between 11:00 and 11:59.
+
+```{r}
+UWDPhe=read.table("../../data/raw/indoor/Cow_Phenotypes.csv", sep= ",", header = T)
+UWDPhe_Parity2=unique(UWDPhe[UWDPhe$Parity=="2","ID"])
+
+# Transform Time data into POSIXct format
+UWBdata$Time=as.POSIXct(UWBdata$Time, format = "%d-%b-%Y %H:%M:%S")
+
+# Filter by parity 
+UWBdata_Parity2=UWBdata[UWBdata$ID%in%UWDPhe_Parity2,]
+
+# Fiter by hour
+UWBdata_Parity2_11=UWBdata_Parity2[format(UWBdata_Parity2$Time, "%H") == "11", ]
+
+xlims=range(UWBdata$x, na.rm = TRUE)
+ylims=range(UWBdata$y, na.rm = TRUE)
+plot(UWBdata_Parity2_11[,c("x","y")],xlim=xlims,ylim=ylims, pch = 19, col = "darkgreen")
+```
+
+\
+
+
+```         
+Note: Once you have finished the exercise, save your changes. Remember not to 'pull' once you have changed the files, or they will overwrite the original repository contents. To avoid this, copy the file out of the directory.
+Any questions will be answered on the first day of the course, after we have presented the data that we will be using during the week. There are many possible solutions to this exercise; we will upload one of them to the repository on the first day. 
+```
