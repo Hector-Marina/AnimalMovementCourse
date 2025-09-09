@@ -136,7 +136,7 @@ class(animal1)
 # Other dplyr functions such as mutate, select, arrange, group_by, count,
 # summarize work as well.
 
-# ... E: Exercise ---- 
+# ... E: Exercise - Adding columns ---- 
 # Use the `mutate()` function to add n new column to
 # `animal1` that gives the month when the position was tracked.
 
@@ -185,7 +185,7 @@ animal1$t_[110:140]
 # different bursts.
 animal2
 
-# ... E: Exercise ----
+# ... E: Exercise - resampling ----
 # Resample the animal on a 4h sampling rate, with a tolerance of 5 minutes and 
 # save the result to `animal3`. 
 
@@ -257,7 +257,7 @@ s2 <- animal3 %>% steps_by_burst()
 
 s2 |> print(n = Inf)
 
-# ... E: Exercise --- 
+# ... E: Exercise - many animals ---- 
 # Up to now we only considered one animal. Repeat the steps from above
 # (resampling the track to a 4 hour sampling rate) for each animal while 
 # accounting for bursts of each animal. 
@@ -265,7 +265,7 @@ s2 |> print(n = Inf)
 # TIP: You may want to create a list column to the object `trk1` and 
 # use nest() and unnest(), following the class slides.
 
-# ... S: Solution ---
+# ... S: Solution ----
 trk2 <- trk1 |> 
   # Specify the name of the new column (here data). All columns except id
   # will be put into this list. 
@@ -285,12 +285,12 @@ trk2 <- trk1 |>
 trk2
 
 
-# ... E: Exercise --- 
+# ... E: Exercise - resampling many animals -----
 # Do the same again - Repeat the steps from above (resampling the track to a 4 
 # hour sampling rate) for each animal while account for bursts, but now also 
 # compute the steps for each burst of each animal. 
 
-# ... S: Solution ---
+# ... S: Solution ------
 
 trk2 <- trk1 |> 
   # Specify the name of the new column (here data). All columns except id
@@ -312,10 +312,10 @@ trk2 <- trk1 |>
 
 
 
-# ... E: Exercise --- 
+# ... E: Exercise ----
 # Use the `unnest()` function after and create a histogram of step-lengths (the column `sl_`)
 
-# ... S: Solution ---
+# ... S: Solution ----
 trk2 |> 
   # Make sure you specify the column that you want to unnest.
   unnest(cols = steps) |>  
@@ -324,12 +324,12 @@ trk2 |>
   theme_light()
 
 
-# ... E: Exercise --- 
+# ... E: Exercise ----
 # Now create a histogram of step-lengths for each individual to check if 
 # visually they move differently.
 
 
-# ... S: Solution ---
+# ... S: Solution -----
 
 trk2 |> 
   # Make sure you specify the column that you want to unnest.
