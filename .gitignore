@@ -9,3 +9,10 @@ data/raw/indoor/filled_data_20201019.csv
 
 scripts/Sep12_session1_morning/AM_Sep12_FilterIndoorData_HE.R
 
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+
+# Raw env data
+data/raw/outdoor/env_data/*

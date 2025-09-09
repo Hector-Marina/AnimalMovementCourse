@@ -33,7 +33,7 @@ library(ggplot2)
 
 # Load the environmental data
 # Load the Swedish national land cover data (NMD)
-land_cover <- terra::rast("data/raw/outdoor/nmd10_ungeneralized_stakke.tif")
+land_cover <- terra::rast("data/raw/outdoor/nmd100_ungeneralized_stakke.tif")
 land_cover
 
 #' The layer name is not recognized from the *.tif file, so we set it here again
@@ -42,7 +42,7 @@ names(land_cover) <- "land_cover"
 land_cover
 
 # Load elevation data (DEM)
-dem <- terra::rast("data/raw/outdoor/DEM10_stakke.tif")
+dem <- terra::rast("data/raw/outdoor/DEM100_stakke.tif")
 # rename layer
 names(dem) <- "dem"
 dem
@@ -80,7 +80,7 @@ plot(land_cover, main = "Land cover")
 
 # Load data for the exercises
 # Load prepared tracks 
-dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
+dat <- read_rds("data/processed/outdoor/gps_data_track_bkp.rds")
 
 # Subset to one individual
 a1 <- dat %>% 
