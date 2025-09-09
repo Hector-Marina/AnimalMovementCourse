@@ -16,7 +16,7 @@ dat <- read_rds("data/processed/outdoor/gps_data_track.rds")
 dat1 <- filter(dat, id == "FIT_421956")
 
 # Read covariates
-covars <- rast("data/raw/outdoor/nmd10_ungeneralized_stakke.tif")
+covars <- rast("data/raw/outdoor/nmd100_ungeneralized_stakke.tif")
 # read classes for the land cover map
 lc_class <- read_csv2("data/raw/outdoor/nmd_classes_eng_reclassified_course.csv", 
                       col_names = F) |> 
@@ -29,7 +29,7 @@ levels(covars) <- lc_class[c(1,3)]
 # if you get an error, maybe you need this:
 # levels(land_cover)[[1]] <- data.frame(lc_class)
 
-elev <- rast("data/raw/outdoor/DEM10_stakke.tif")
+elev <- rast("data/raw/outdoor/DEM100_stakke.tif")
 names(elev) <- "elevation"
 
 # if different covariates have exactly the same extent and resolution, they can
@@ -193,12 +193,12 @@ summary(m1)
 # Let us start with creating the two positions.
 s1 <- data.frame(
   elevation = 100,
-  land_cover = TRUE)
+  forest = TRUE)
  
 # data.frame for s2; note the value for forest is different.
 s2 <- data.frame(
   elevation = 100,
-  land_cover = FALSE)
+  forest = FALSE)
 
 # Now that we have specified each location as a `data.frame`, we can pass them
 # along to `log_rss()` for the calculation. The function will return an object
