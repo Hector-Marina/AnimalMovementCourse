@@ -1,5 +1,5 @@
 ---
-title: "AM_Sep7_TimeBudgetIndoor"
+title: "AM_Sep11_TimeBudgetIndoor"
 author: "Keni Ren"
 date: "2025-08-29"
 output: html_document
@@ -12,16 +12,16 @@ We could select a group of cows and calculate their daily time budget.
 At last, we investigate if parity could affect cubicle occupancy.
 
 ## Structure of the code
-- Example code: 'AM_Sep7_TimeBudgetIndoor.rmd'
-- 'TimeBudget_Functions/data.R':Functions to read, clean and manipulate data 
-- 'TimeBudget_Functions/plot.R':Functions to plot data
-- 'TimeBudget_Functions/analysis.R': Methods to process and analyse data 
+- Example code: 'AM_Sep11_TimeBudgetIndoor.rmd'
+- './TimeBudget_Functions/data.R':Functions to read, clean and manipulate data 
+- './TimeBudget_Functions/plot.R':Functions to plot data
+- './TimeBudget_Functions/analysis.R': Methods to process and analyse data 
 
 
 ```{r setup, include=FALSE}
 #init
-setwd("D:/work/SLU/Planning_Animal_Movement_PhD-course/Code/Code")
-dataFolder <- "D:/work/SLU/Planning_Animal_Movement_PhD-course/GIT/AnimalMovementCourse/data/raw/indoor"
+
+dataFolder <- "../../data/raw/indoor"
 outputFolder<- "./Output"
 
 source("./TimeBudget_Functions/plot.R")
