@@ -211,6 +211,7 @@ Plot the age contemporary network:\
 ```{r}
 plot(AGEnet, main="Age network", displaylabels=F, vertex.col=CPheno$NetCol, edge.col="purple")
 ```
+
 ## Topological parameters {#etp}
 Estimate three topological centrality parameters of the networks:\
 
