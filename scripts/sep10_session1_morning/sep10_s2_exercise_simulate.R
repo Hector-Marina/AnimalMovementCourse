@@ -135,7 +135,7 @@ terra::plot(plts) # constrained movement as comparison from before‚
 # ... E (exercise)
 
 # Use the following landscape
-set.seed(123)
+set.seed(1243)
 
 r <- terra::rast(xmin = -200, xmax = 200,
                  ymin = -200, ymax = 200, res = 1)
