@@ -182,7 +182,7 @@ Contacts detected per functional area out of the total number of possible contac
 ## Feeding area
 
 ```{r}
-sum(ADJmat[["FeedingArea"]])/((nrow(ADJmat[["FeedingArea"]])^2)-nrow(ADJmat[["FeedingArea"]]))/2
+sum(ADJmat[["FeedingArea"]])/(((nrow(ADJmat[["FeedingArea"]])^2)-nrow(ADJmat[["FeedingArea"]]))/2)
 ```
 
 ## Resting area
