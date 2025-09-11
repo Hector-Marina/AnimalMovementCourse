@@ -297,10 +297,10 @@ sp::coordinates(FA_data) <- c("x", "y")
 head(FA_data)
 ```
 
-Using the spatial data we estimate the home range (ignoring the existence of boundaries) using the `kernelUD` function. As this function is capable of estimate the home range for several individuals the first object require the coordinates and the animal's "Tag" from the spatial data information. Secondly, h set the ad hoc method as the smoothing parameter. Finally, the third parameter set the size of the grid on which the home range should be estimated.
+Using the spatial data we estimate the home range (ignoring the existence of boundaries) using the `kernelUD` function. As this function is capable of estimate the home range for several individuals the first object require the coordinates and the animal's "Tag" from the spatial data information. Secondly, h set the ad hoc method as the smoothing parameter. Finally, the third parameter set the size of the grid on which the home range should be estimated. `grid = N`, means each side of the grid has N cells (so the grid has NxN pixels).
 
 ```{r}
-HomeRange <- kernelUD(FA_data[,"Tag"], h = "href", grid = 1000)
+HomeRange <- kernelUD(FA_data[,"Tag"], h = "href", grid = 100)
 ```
 
 After calculating the utilisation distribution for the different positions considered in the grid, we can visualise the home range results over the farm plan. The `getverticeshr` function extracts the perimeter of the UD information from the estUDm object, taking into account a certain percentage level of home range estimation.
